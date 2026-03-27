@@ -132,9 +132,9 @@
 
     <main class="requests-shell">
         <section class="requests-hero">
-            <span class="section-kicker">Operations center</span>
-            <h1>Saved items, inquiries, and bookings in one place</h1>
-            <p>This is a browser-based prototype of the kind of dashboard you can later connect to a backend, user accounts, and admin workflows.</p>
+            <span class="section-kicker">Requests</span>
+            <h1>Saved items, enquiries, and bookings in one place</h1>
+            <p>Use this page to review the people and transport options you have saved, along with recent enquiries and booking activity.</p>
             <div class="stats-grid">
                 <div class="stat-box"><strong id="savedDriversCount">0</strong><span>Saved drivers</span></div>
                 <div class="stat-box"><strong id="savedPartnersCount">0</strong><span>Saved partners</span></div>
@@ -154,7 +154,7 @@
         </section>
 
         <section class="requests-card">
-            <h2>Saved marketplace items</h2>
+            <h2>Saved items</h2>
             <div id="savedList" class="requests-grid"></div>
         </section>
     </main>
@@ -187,10 +187,10 @@
         document.getElementById("bookingsCount").textContent = bookings.length;
 
         renderCollection("inquiriesList", inquiries, "No inquiries yet. Submit one from the car partners page.", function(item) {
-            return '<article class="request-item"><div><strong>' + item.type + ' inquiry</strong><span>' + item.city + ' | Budget: ' + item.budget + '</span><div class="request-meta">Submitted: ' + formatDate(item.submittedAt || item.createdAt) + '</div></div><span class="status-pill">Captured</span></article>';
+            return '<article class="request-item"><div><strong>' + item.type + ' enquiry</strong><span>' + item.city + ' | Budget: ' + item.budget + '</span><div class="request-meta">Submitted: ' + formatDate(item.submittedAt || item.createdAt) + '</div></div><span class="status-pill">Received</span></article>';
         });
 
-        renderCollection("bookingsList", bookings, "No bookings yet. Create one from the drivers or partners pages.", function(item) {
+        renderCollection("bookingsList", bookings, "No bookings yet. Create one from the drivers or car partners pages.", function(item) {
             return '<article class="request-item"><div><strong>' + item.name + '</strong><span>' + item.category + ' booking in ' + item.city + ' | ' + item.serviceType + '</span><div class="request-meta">Created: ' + formatDate(item.createdAt) + '</div></div><span class="status-pill">' + item.status + '</span></article>';
         });
 

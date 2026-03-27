@@ -736,12 +736,11 @@
         <section class="page-hero">
             <div class="hero-grid">
                 <div class="hero-copy">
-                    <div class="eyebrow">Marketplace Ready Experience</div>
-                    <h1>Find vetted car partners faster and manage every inquiry with more confidence.</h1>
+                    <div class="eyebrow">Verified car partners</div>
+                    <h1>Find reliable car partners for business, personal use, and airport trips.</h1>
                     <p>
-                        This upgraded page is built like a real marketplace screen: stronger trust signals,
-                        richer profile details, clear pricing, inquiry capture, search and sorting controls,
-                        and UI patterns you can later connect to a database, payments, chat, and admin tools.
+                        Browse trusted car partners by service type, location, response time, and daily rate.
+                        Each profile gives you enough information to compare options and decide with confidence.
                     </p>
                     <div class="hero-actions">
                         <button class="hero-btn" onclick="document.getElementById('partnerDirectory').scrollIntoView({behavior:'smooth'})">Browse partners</button>
@@ -764,8 +763,8 @@
                 </div>
 
                 <aside class="hero-panel">
-                    <h2>Quick match request</h2>
-                    <p>Capture serious demand from users now, then connect this form to email, WhatsApp, Supabase, Firebase, or your backend later.</p>
+                    <h2>Send your request</h2>
+                    <p>Tell us what you need and where you need it, and we can help you start with the right car partner.</p>
                     <form id="quickInquiry" class="filter-grid">
                         <div class="field">
                             <label for="requestType">Need type</label>
@@ -793,7 +792,7 @@
                             <button class="pill-btn" type="submit">Submit request</button>
                             <button class="ghost-btn" type="button" onclick="document.getElementById('quickInquiry').reset()">Clear form</button>
                         </div>
-                        <div id="formFeedback" class="micro-note" aria-live="polite">No backend connected yet. This demo stores the latest request inside the browser.</div>
+                        <div id="formFeedback" class="micro-note" aria-live="polite">Your request will be saved in this browser for now.</div>
                     </form>
                     <div class="trust-row">
                         <div class="trust-chip">ID verified</div>
@@ -809,22 +808,22 @@
                 <aside class="surface-card" id="how-it-works">
                     <div class="section-head">
                         <div>
-                            <h2>What makes this feel more professional</h2>
-                            <p>These are the product patterns a real transport marketplace usually needs.</p>
+                            <h2>Why this page works better</h2>
+                            <p>These details help customers compare car partners more easily and make faster decisions.</p>
                         </div>
                     </div>
                     <div class="feature-list">
                         <div class="feature-item">
-                            <strong>Structured partner profiles</strong>
-                            <span>Ratings, response speed, pricing, fleet type, location, and availability are shown at a glance.</span>
+                            <strong>Clear partner details</strong>
+                            <span>Ratings, response time, pricing, fleet type, location, and availability are easy to see at a glance.</span>
                         </div>
                         <div class="feature-item">
-                            <strong>Better conversion points</strong>
-                            <span>Users can browse, save, request a callback, or submit their requirements without getting stuck.</span>
+                            <strong>Easier next steps</strong>
+                            <span>Visitors can browse, save a partner, send a request, or move straight to a profile page.</span>
                         </div>
                         <div class="feature-item">
-                            <strong>Future app foundation</strong>
-                            <span>The UI is ready for later additions like authentication, payment, chat, maps, admin approval, and analytics.</span>
+                            <strong>Better service experience</strong>
+                            <span>The page is organised well enough to support bookings, payments, messaging, and account management later on.</span>
                         </div>
                     </div>
                 </aside>
@@ -832,23 +831,23 @@
                 <div class="surface-card">
                     <div class="section-head">
                         <div>
-                            <h2>Operational insights</h2>
-                            <p>Useful trust and business information that helps buyers decide faster.</p>
+                            <h2>What customers care about most</h2>
+                            <p>These are the details that usually matter when someone is choosing a transport partner.</p>
                         </div>
                         <span class="micro-note">Updated today</span>
                     </div>
                     <div class="insight-list">
                         <div class="insight-item">
-                            <strong>Most requested segment</strong>
-                            <span>Corporate and airport transfer partnerships are leading demand because users want cleaner, predictable booking flows.</span>
+                            <strong>Most requested services</strong>
+                            <span>Corporate travel and airport transfers continue to attract the most interest because customers value reliability and clear pricing.</span>
                         </div>
                         <div class="insight-item">
-                            <strong>Missing app features you should add later</strong>
-                            <span>Real-time messaging, booking history, wallet or payment tracking, verified document uploads, map-based discovery, and admin moderation.</span>
+                            <strong>Useful additions for the next phase</strong>
+                            <span>Live messaging, booking history, payment tracking, verified documents, and map-based search will make the service easier to manage.</span>
                         </div>
                         <div class="insight-item">
-                            <strong>Trust signals that matter</strong>
-                            <span>Verification badges, review count, pricing transparency, response SLA, and service coverage are stronger than generic filler text.</span>
+                            <strong>What builds trust</strong>
+                            <span>Verified profiles, review counts, clear pricing, response speed, and service coverage help customers feel more secure.</span>
                         </div>
                     </div>
                 </div>
@@ -858,9 +857,9 @@
                 <div class="section-head">
                     <div>
                         <h2>Car Partner Directory</h2>
-                        <p>Browse a richer list of car partners using filters that you can later connect to live data.</p>
+                        <p>Browse car partners by city, service type, price, and response speed.</p>
                     </div>
-                    <span class="micro-note">Prototype with live browser interactions</span>
+                    <span class="micro-note">Use filters to narrow down your options</span>
                 </div>
 
                 <div class="partner-toolbar">
@@ -899,7 +898,7 @@
 
                 <div class="result-summary">
                     <strong id="resultsCount">Showing 4 partners</strong>
-                    <span class="micro-note">Tip: shortlist partners here, then store the saved state on user accounts later.</span>
+                    <span class="micro-note">You can save promising options and review them again from the requests page.</span>
                 </div>
 
                 <div id="partnerGrid" class="partner-grid">
@@ -1016,7 +1015,7 @@
                                 <div class="partner-footer">
                                     <div class="partner-badges">
                                         <span class="badge">Online</span>
-                                        <span class="badge">Night shift ready</span>
+                                        <span class="badge">Night shift</span>
                                         <span class="badge">Performance dashboard</span>
                                     </div>
                                     <div class="partner-actions">
@@ -1078,36 +1077,36 @@
                     <div class="section-head">
                         <div>
                             <h3>Partner onboarding checklist</h3>
-                            <p>Features and data you should eventually capture from every partner profile.</p>
+                            <p>Important information to collect from every car partner.</p>
                         </div>
                     </div>
                     <ul class="documents-list">
-                        <li><strong>National ID and driving credentials</strong><br><span>Support verification and trust scoring.</span></li>
-                        <li><strong>Vehicle inspection and insurance status</strong><br><span>Important for corporate clients and quality control.</span></li>
-                        <li><strong>Availability calendar and booking rules</strong><br><span>Prevents double bookings and wasted follow-up.</span></li>
-                        <li><strong>Wallet, payout, and invoice details</strong><br><span>Needed when you add payments and business reporting.</span></li>
+                        <li><strong>National ID and driving credentials</strong><br><span>Needed for verification and account approval.</span></li>
+                        <li><strong>Vehicle inspection and insurance status</strong><br><span>Important for quality checks and customer confidence.</span></li>
+                        <li><strong>Availability calendar and booking rules</strong><br><span>Helps avoid double bookings and missed follow-up.</span></li>
+                        <li><strong>Payment and invoice details</strong><br><span>Useful when billing and payouts are added.</span></li>
                     </ul>
                 </section>
 
                 <section class="surface-card">
                     <div class="section-head">
                         <div>
-                            <h3>Suggested next app modules</h3>
-                            <p>If you want this to become a professional app, these are the next useful building blocks.</p>
+                            <h3>Useful next additions</h3>
+                            <p>These sections will make the platform more complete as the business grows.</p>
                         </div>
                     </div>
                     <div class="feature-list">
                         <div class="feature-item">
-                            <strong>User dashboard</strong>
-                            <span>Saved partners, booking history, invoices, support tickets, and profile settings.</span>
+                            <strong>Customer dashboard</strong>
+                            <span>Saved partners, booking history, invoices, support messages, and account settings.</span>
                         </div>
                         <div class="feature-item">
-                            <strong>Admin review panel</strong>
-                            <span>Approve new partners, manage flagged accounts, and monitor conversion analytics.</span>
+                            <strong>Review and approval tools</strong>
+                            <span>Approve new partners, check documents, and manage flagged accounts.</span>
                         </div>
                         <div class="feature-item">
-                            <strong>Live communication</strong>
-                            <span>In-app chat, WhatsApp integration, SMS alerts, and booking status notifications.</span>
+                            <strong>Customer communication</strong>
+                            <span>Chat, WhatsApp updates, SMS alerts, and booking status messages.</span>
                         </div>
                     </div>
                 </section>
@@ -1115,15 +1114,15 @@
 
             <section class="cta-panel">
                 <div>
-                    <h2>Ready to turn this into a stronger product flow?</h2>
-                    <p>The next clean step is connecting this UI to real data and giving each partner a proper details page, inquiry storage, and admin approval workflow.</p>
+                    <h2>Need help tracking your requests?</h2>
+                    <p>Open the requests page to review saved partners, bookings, and enquiry details in one place.</p>
                 </div>
                 <button class="hero-btn" type="button" onclick="window.location.href='requests.html'">Open requests center</button>
             </section>
 
             <div class="page-footer-nav">
                 <a class="footer-link" href="carpartners.html">← Previous page</a>
-                <span class="micro-note">This page now routes into profile pages, bookings, and stored inquiries.</span>
+                <span class="micro-note">You can now move from this page to profiles, bookings, and saved requests.</span>
             </div>
         </section>
     </main>
@@ -1194,7 +1193,7 @@
         function prefillInquiry(name, city, type) {
             document.getElementById("requestType").value = type === "Airport" ? "Airport transfer" : type === "Corporate" ? "Corporate transport" : type === "Online" ? "Ride-hailing partnership" : "Personal use";
             document.getElementById("requestLocation").value = city;
-            feedback.textContent = "Request prepared for " + name + ". Complete the form above to continue.";
+            feedback.textContent = "Request prepared for " + name + ". Fill in the form above to continue.";
             document.getElementById("quickInquiry").scrollIntoView({ behavior: "smooth" });
         }
 
@@ -1251,7 +1250,7 @@
             payload.id = "inquiry-" + Date.now();
             payload.createdAt = new Date().toISOString();
             window.DriveSasaStore.addInquiry(payload);
-            feedback.textContent = "Request saved in this browser for " + payload.city + ". Connect this form to a backend when you are ready.";
+            feedback.textContent = "Your request for " + payload.city + " has been saved in this browser.";
             inquiryForm.reset();
         });
 

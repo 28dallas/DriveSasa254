@@ -34,7 +34,7 @@
           </div>
           <hr style="margin:16px 0;">
           <div id="activity-summary">
-            <p>Loading marketplace activity...</p>
+            <p>Loading account activity...</p>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
       if(!user){
         info.innerHTML = '<p>You are not signed in. <a href="signin.html">Sign In</a></p>';
         activity.innerHTML = `
-          <h3>Marketplace Activity</h3>
+          <h3>Account Activity</h3>
           <p><strong>Saved Drivers:</strong> ${savedDrivers.length}</p>
           <p><strong>Saved Partners:</strong> ${savedPartners.length}</p>
           <p><strong>Inquiries:</strong> ${inquiries.length}</p>
@@ -116,7 +116,7 @@
         ${detailsHtml}
       `;
       activity.innerHTML = `
-        <h3>Marketplace Activity</h3>
+        <h3>Account Activity</h3>
         <p><strong>Saved Drivers:</strong> ${savedDrivers.length}</p>
         <p><strong>Saved Partners:</strong> ${savedPartners.length}</p>
         <p><strong>Inquiries:</strong> ${inquiries.length}</p>
