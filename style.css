@@ -178,14 +178,24 @@ body {
 }
 
 .dropdown select {
-    background: #f5f5f5;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 5px;
-    font-size: 1rem;
-    color: #333;
+    background: #fff !important;
+    color: #111 !important;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 1.1em;
     cursor: pointer;
-    min-width: 200px;
+    min-width: 160px;
+    height: 40px;
+    appearance: auto;
+    -webkit-appearance: menulist;
+    -moz-appearance: menulist;
+}
+
+.dropdown select option {
+    background: #fff !important;
+    color: #111 !important;
+    padding: 8px;
 }
 
 .search-btn {

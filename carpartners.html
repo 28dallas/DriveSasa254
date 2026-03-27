@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveSasa - Car Partners</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <style>
+        .car-partner-list {
+            max-width: 900px;
+            margin: 32px auto;
+        }
+        .car-partner-row {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            align-items: center;
+        }
+        .car-partner-img {
+            width: 260px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .car-partner-card {
+            background: #e6f7d9;
+            border-radius: 16px;
+            padding: 24px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .car-partner-name {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #222;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .car-partner-verified {
+            color: #2196f3;
+            font-size: 1.1em;
+        }
+        .car-partner-details {
+            font-size: 1em;
+            color: #333;
+        }
+        .other-btn {
+            margin-top: 8px;
+            padding: 8px 18px;
+            border: 1px solid #222;
+            background: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .car-partners-title {
+            color: #f44336;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/Dlogo2.png" alt="DriveSasa Logo">
+                <span class="logo-text">DRIVE<span class="sasa">SASA</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Services ▼</a>
+                    <div class="dropdown-content">
+                        <a href="drivers.html">Driver</a>
+                        <a href="carpartners.html" class="active">Car Partner</a>
+                        <a href="#">Car Hire</a>
+                    </div>
+                </li>
+                <li><a href="#">How it works</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="sign-in" onclick="window.location.href='signin.html'">Sign In</button>
+                <button class="sign-up" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" style="position:relative; margin-bottom:32px;">
+            <div style="width:100%; height:260px; background:#eee; position:relative; overflow:hidden;">
+                <img src="img/Drivers/images.jpeg" alt="Car Partner Hero" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.7);">
+                <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:rgba(30,30,30,0.9); color:#fff; font-size:2em; font-weight:bold; padding:24px 32px; border-radius:8px; text-align:center;">
+                    Experience a seamless Connections<br>Between Drivers and Car Partners.
+                </div>
+            </div>
+        </section>
+
+        <!-- Type Dropdown and Search -->
+        <div style="display:flex; justify-content:center; align-items:center; gap:16px; margin-bottom:32px;">
+            <div style="min-width:180px;">
+                <select style="width:100%; padding:8px 12px; border-radius:6px; border:1px solid #ccc; font-size:1em;">
+                    <option>Type</option>
+                    <option>Online</option>
+                    <option>Corporate</option>
+                    <option>Personal</option>
+                </select>
+            </div>
+            <button class="search-btn" style="padding:10px 24px; border-radius:6px; background:#f44336; color:#fff; border:none; font-size:1em; cursor:pointer;">Search</button>
+        </div>
+
+        <div class="car-partner-list">
+            <div class="car-partners-title">Car Partners</div>
+            <div class="car-partner-row">
+                <img src="img/cars/pexels-ajdin-coric-504250286-31574913.jpg" alt="Car" class="car-partner-img">
+                <div class="car-partner-card">
+                    <div class="car-partner-name">JOHN OKETCH <img src="img/download.png" alt="Verified" style="width:24px;height:24px;vertical-align:middle;margin-left:4px;"></div>
+                    <div class="car-partner-details">
+                        <div><strong>Experience:</strong> 2 Years</div>
+                        <div><strong>Driver Type:</strong> Online</div>
+                        <div><strong>Contact:</strong> 0735 763 ...</div>
+                        <div><strong>Any Other Info:</strong>...</div>
+                    </div>
+                    <button class="other-btn">Any other thing</button>
+                </div>
+            </div>
+            <div class="car-partner-row">
+                <img src="img/cars/pexels-ajdin-coric-504250286-31574915.jpg" alt="Car" class="car-partner-img">
+                <div class="car-partner-card">
+                    <div class="car-partner-name">JOHN OKETCH <img src="img/download.png" alt="Verified" style="width:24px;height:24px;vertical-align:middle;margin-left:4px;"></div>
+                    <div class="car-partner-details">
+                        <div><strong>Experience:</strong> 2 Years</div>
+                        <div><strong>Driver Type:</strong> Online</div>
+                        <div><strong>Contact:</strong> 0735 763 ...</div>
+                         <div><strong>Any Other Info:</strong>...</div>
+                    </div>
+                    <button class="other-btn">Any other thing</button>
+                </div>
+            </div>
+            <div class="car-partner-row">
+                <img src="img/cars/pexels-ajdin-coric-504250286-31574918.jpg" alt="Car" class="car-partner-img">
+                <div class="car-partner-card">
+                    <div class="car-partner-name">JOHN OKETCH <img src="img/download.png" alt="Verified" style="width:24px;height:24px;vertical-align:middle;margin-left:4px;"></div>
+                    <div class="car-partner-details">
+                        <div><strong>Experience:</strong> 2 Years</div>
+                        <div><strong>Driver Type:</strong> Online</div>
+                        <div><strong>Contact:</strong> 0735 763 ...</div>
+                         <div><strong>Any Other Info:</strong>...</div>
+                    </div>
+                    <button class="other-btn">Any other thing</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+        <div style="display:flex; justify-content:center; margin:40px 0 32px 0;">
+            <button onclick="window.location.href='carpartners2.html'" style="padding:10px 24px; border-radius:6px; border:1px solid #222; background:#fff; cursor:pointer; font-size:1em;">Next Page</button>
+        </div>
+</body>
+</html>

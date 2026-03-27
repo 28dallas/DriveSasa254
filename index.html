@@ -19,7 +19,7 @@
                     <a href="#" class="dropbtn">Services ▼</a>
                     <div class="dropdown-content">
                         <a href="drivers.html">Driver</a>
-                        <a href="#">Car Partner</a>
+                        <a href="carpartners.html">Car Partner</a>
                         <a href="#">Car Hire</a>
                     </div>
                 </li>
@@ -59,13 +59,17 @@
 
         <div class="search-section">
             <div class="search-form">
-                <div class="dropdown">
-                    <select id="serviceSelect">
-                        <option>Driver</option> 
-                        <option>Car Driver</option>
-                        <option>Car Partner</option>
-                        <option>Car Hire</option>
-                    </select>
+                <div class="dropdown" style="position:relative;">
+                    <div id="customServiceSelect" class="custom-select" style="width:160px; padding:8px 12px; border-radius:6px; border:1px solid #ccc; background:#fff; cursor:pointer;">
+                        <span id="selectedService" style="font-weight:bold;">Driver</span>
+                        <span style="float:right;">&#9662;</span>
+                    </div>
+                    <div id="serviceOptions" class="custom-options" style="display:none; position:absolute; top:40px; left:0; width:100%; background:#fff; border:1px solid #ccc; border-radius:6px; z-index:10;">
+                        <div class="option" data-value="Driver" style="padding:8px 12px; font-weight:bold; cursor:pointer;">Driver</div>
+                        <div class="option" data-value="Car Driver" style="padding:8px 12px; cursor:pointer;">Car Driver</div>
+                        <div class="option" data-value="Car Partner" style="padding:8px 12px; cursor:pointer;">Car Partner</div>
+                        <div class="option" data-value="Car Hire" style="padding:8px 12px; cursor:pointer;">Car Hire</div>
+                    </div>
                 </div>
                 <div class="dropdown">
                     <select>
@@ -101,20 +105,65 @@
             
             if (type === 'car') {
                 serviceSelect.innerHTML = `
-                    
-                    <option>Driver</option>
+                    <option><span style='font-weight:bold;'>Driver</span></option>
                     <option>Car Partner</option>
                     <option>Car Hire</option>
                 `;
             } else {
                 serviceSelect.innerHTML = `
-                    <option>Rider</option>
+                    <option><span style='font-weight:bold;'>Rider</span></option>
                     <option>Motorcycle Rider</option>
                     <option>Motorcycle Partner</option>
                     <option>Motorcycle Hire</option>
                 `;
             }
         }
+            function selectVehicle(type) {
+                const tabs = document.querySelectorAll('.tab');
+                tabs.forEach(tab => tab.classList.remove('active'));
+                event.target.closest('.tab').classList.add('active');
+                const customServiceSelect = document.getElementById('customServiceSelect');
+                const selectedService = document.getElementById('selectedService');
+                const serviceOptions = document.getElementById('serviceOptions');
+                if (type === 'car') {
+                    selectedService.innerHTML = '<span style="font-weight:bold;">Driver</span>';
+                    serviceOptions.innerHTML = `
+                        <div class="option" data-value="Driver" style="padding:8px 12px; font-weight:bold; cursor:pointer;">Driver</div>
+                        <div class="option" data-value="Car Driver" style="padding:8px 12px; cursor:pointer;">Car Driver</div>
+                        <div class="option" data-value="Car Partner" style="padding:8px 12px; cursor:pointer;">Car Partner</div>
+                        <div class="option" data-value="Car Hire" style="padding:8px 12px; cursor:pointer;">Car Hire</div>
+                    `;
+                } else {
+                    selectedService.innerHTML = '<span style="font-weight:bold;">Rider</span>';
+                    serviceOptions.innerHTML = `
+                        <div class="option" data-value="Rider" style="padding:8px 12px; font-weight:bold; cursor:pointer;">Rider</div>
+                        <div class="option" data-value="Motorcycle Rider" style="padding:8px 12px; cursor:pointer;">Motorcycle Rider</div>
+                        <div class="option" data-value="Motorcycle Partner" style="padding:8px 12px; cursor:pointer;">Motorcycle Partner</div>
+                        <div class="option" data-value="Motorcycle Hire" style="padding:8px 12px; cursor:pointer;">Motorcycle Hire</div>
+                    `;
+                }
+            }
+
+            // Custom dropdown logic
+            document.addEventListener('DOMContentLoaded', function() {
+                const customServiceSelect = document.getElementById('customServiceSelect');
+                const selectedService = document.getElementById('selectedService');
+                const serviceOptions = document.getElementById('serviceOptions');
+                customServiceSelect.addEventListener('click', function(e) {
+                    serviceOptions.style.display = serviceOptions.style.display === 'block' ? 'none' : 'block';
+                });
+                serviceOptions.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('option')) {
+                        selectedService.innerHTML = e.target.style.fontWeight === 'bold' ? `<span style='font-weight:bold;'>${e.target.textContent}</span>` : e.target.textContent;
+                        serviceOptions.style.display = 'none';
+                    }
+                });
+                document.addEventListener('click', function(e) {
+                    if (!customServiceSelect.contains(e.target) && !serviceOptions.contains(e.target)) {
+                        serviceOptions.style.display = 'none';
+                    }
+                });
+            });
     </script>
 </body>
 </html>

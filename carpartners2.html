@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveSasa - Car Partners (Page 2)</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <style>
+        .car-partner-list {
+            max-width: 900px;
+            margin: 32px auto;
+        }
+        .car-partner-row {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            align-items: center;
+        }
+        .car-partner-img {
+            width: 260px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .car-partner-card {
+            background: #e6f7d9;
+            border-radius: 16px;
+            padding: 24px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .car-partner-name {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #222;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .car-partner-details {
+            font-size: 1em;
+            color: #333;
+        }
+        .other-btn {
+            margin-top: 8px;
+            padding: 8px 18px;
+            border: 1px solid #222;
+            background: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .car-partners-title {
+            color: #f44336;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/Dlogo2.png" alt="DriveSasa Logo">
+                <span class="logo-text">DRIVE<span class="sasa">SASA</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Services ▼</a>
+                    <div class="dropdown-content">
+                        <a href="drivers.html">Driver</a>
+                        <a href="carpartners.html">Car Partner</a>
+                        <a href="#">Car Hire</a>
+                    </div>
+                </li>
+                <li><a href="#">How it works</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="sign-in" onclick="window.location.href='signin.html'">Sign In</button>
+                <button class="sign-up" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="car-partner-list">
+            <div class="car-partners-title">Car Partners</div>
+            <div class="car-partner-row">
+                <img src="img/cars/pexels-ajdin-coric-504250286-31574920.jpg" alt="Car" class="car-partner-img">
+                <div class="car-partner-card">
+                    <div class="car-partner-name">MARY NJERI <img src="img/download.png" alt="Verified" style="width:24px;height:24px;vertical-align:middle;margin-left:4px;"></div>
+                    <div class="car-partner-details">
+                        <div><strong>Experience:</strong> 3 Years</div>
+                        <div><strong>Driver Type:</strong> Corporate</div>
+                        <div><strong>Contact:</strong> 0722 111 222</div>
+                    </div>
+                    <button class="other-btn">Any other thing</button>
+                </div>
+            </div>
+            <div class="car-partner-row">
+                <img src="img/cars/pexels-irfan-rahat-164426592-11114271.jpg" alt="Car" class="car-partner-img">
+                <div class="car-partner-card">
+                    <div class="car-partner-name">DAVID OTIENO <img src="img/download.png" alt="Verified" style="width:24px;height:24px;vertical-align:middle;margin-left:4px;"></div>
+                    <div class="car-partner-details">
+                        <div><strong>Experience:</strong> 5 Years</div>
+                        <div><strong>Driver Type:</strong> Personal</div>
+                        <div><strong>Contact:</strong> 0733 555 888</div>
+                    </div>
+                    <button class="other-btn">Any other thing</button>
+                </div>
+            </div>
+            <div class="car-partner-row">
+                <img src="img/cars/pexels-kipras-zabeliauskas-1607943-5704347.jpg" alt="Car" class="car-partner-img">
+                <div class="car-partner-card">
+                    <div class="car-partner-name">FATMA ABDALLA <img src="img/download.png" alt="Verified" style="width:24px;height:24px;vertical-align:middle;margin-left:4px;"></div>
+                    <div class="car-partner-details">
+                        <div><strong>Experience:</strong> 4 Years</div>
+                        <div><strong>Driver Type:</strong> Online</div>
+                        <div><strong>Contact:</strong> 0711 333 444</div>
+                    </div>
+                    <button class="other-btn">Any other thing</button>
+                </div>
+            </div>
+        </div>
+        <div style="display:flex; justify-content:center; margin:40px 0 32px 0;">
+            <button onclick="window.location.href='carpartners.html'" style="padding:10px 24px; border-radius:6px; border:1px solid #222; background:#fff; cursor:pointer; font-size:1em;">Previous Page</button>
+        </div>
+    </main>
+</body>
+</html>
