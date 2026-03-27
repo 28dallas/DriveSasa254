@@ -6,7 +6,18 @@ Not a full validator, but catches common accidental truncations.
 import sys
 from pathlib import Path
 
-FILES = ["index.html","signin.html","signup.html"]
+DEFAULT_FILES = [
+    "index.html",
+    "signin.html",
+    "signup.html",
+    "carpartners.html",
+    "carpartners2.html",
+    "drivers.html",
+    "dashboard.html",
+    "requests.html",
+    "driver-profile.html",
+    "partner-profile.html",
+]
 
 def check(path: Path):
     text = path.read_text(encoding='utf-8')
@@ -20,8 +31,9 @@ def check(path: Path):
 
 def main():
     base = Path(__file__).resolve().parents[1]
+    files = sys.argv[1:] or DEFAULT_FILES
     any_err = False
-    for f in FILES:
+    for f in files:
         p = base / f
         if not p.exists():
             print(f"[MISSING] {f} not found")

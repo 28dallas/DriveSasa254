@@ -16,6 +16,7 @@
       <ul class="nav-menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="drivers.html">Driver</a></li>
+        <li><a href="requests.html">Requests</a></li>
       </ul>
       <div class="auth-buttons">
         <button id="signout-btn" class="sign-in">Sign Out</button>
@@ -31,6 +32,10 @@
           <div id="user-info">
             <p>Loading user...</p>
           </div>
+          <hr style="margin:16px 0;">
+          <div id="activity-summary">
+            <p>Loading marketplace activity...</p>
+          </div>
         </div>
       </div>
     </div>
@@ -43,9 +48,21 @@
 
     function render(){
       const info = document.getElementById('user-info');
+      const activity = document.getElementById('activity-summary');
       const user = getCurrentUser();
+      const savedDrivers = JSON.parse(localStorage.getItem('ds_saved_drivers') || '[]');
+      const savedPartners = JSON.parse(localStorage.getItem('ds_saved_partners') || '[]');
+      const inquiries = JSON.parse(localStorage.getItem('ds_inquiries') || '[]');
+      const bookings = JSON.parse(localStorage.getItem('ds_bookings') || '[]');
       if(!user){
         info.innerHTML = '<p>You are not signed in. <a href="signin.html">Sign In</a></p>';
+        activity.innerHTML = `
+          <h3>Marketplace Activity</h3>
+          <p><strong>Saved Drivers:</strong> ${savedDrivers.length}</p>
+          <p><strong>Saved Partners:</strong> ${savedPartners.length}</p>
+          <p><strong>Inquiries:</strong> ${inquiries.length}</p>
+          <p><strong>Bookings:</strong> ${bookings.length}</p>
+        `;
         return;
       }
 
@@ -97,6 +114,14 @@
         <p><strong>Email:</strong> ${user.email || ''}</p>
         <hr>
         ${detailsHtml}
+      `;
+      activity.innerHTML = `
+        <h3>Marketplace Activity</h3>
+        <p><strong>Saved Drivers:</strong> ${savedDrivers.length}</p>
+        <p><strong>Saved Partners:</strong> ${savedPartners.length}</p>
+        <p><strong>Inquiries:</strong> ${inquiries.length}</p>
+        <p><strong>Bookings:</strong> ${bookings.length}</p>
+        <p><a href="requests.html">Open the Requests Center</a></p>
       `;
     }
 

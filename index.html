@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DriveSasa - Connect With Trusted Drivers & Reliable Cars</title>
+    <title>DriveSasa - Trusted Mobility Marketplace</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,17 +14,17 @@
                 <span class="logo-text">DRIVE<span class="sasa">SASA</span></span>
             </div>
             <ul class="nav-menu">
-                <li><a href="#" class="active">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropbtn">Services ▼</a>
                     <div class="dropdown-content">
                         <a href="drivers.html">Driver</a>
-                        <a href="carpartners.html">Car Partner</a>
+                        <a href="carpartners2.html">Car Partner</a>
                         <a href="#">Car Hire</a>
                     </div>
                 </li>
-                <li><a href="#">How it works</a></li>
-                <li><a href="#">Contact us</a></li>
+                <li><a href="#how-it-works">How it works</a></li>
+                <li><a href="requests.html">Requests</a></li>
             </ul>
             <div class="auth-buttons">
                 <button class="sign-in" onclick="window.location.href='signin.html'">Sign In</button>
@@ -33,137 +33,248 @@
         </nav>
     </header>
 
-    <main class="hero-section">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Connect With Trusted Drivers & Reliable Cars</h1>
-                <p class="hero-subtitle">Reliable Drivers. Trusted Cars<br>Simple Solutions</p>
-            </div>
-            <div class="hero-image">
-                <img src="img/car.png" alt="Red Honda Car" class="car-image">
-            </div>
-        </div>
-
-        <div class="vehicle-tabs">
-            <button class="tab active" onclick="selectVehicle('car')">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
-                </svg>
-                Car
-            </button>
-            <button class="tab" onclick="selectVehicle('motorcycle')">
-                <img src="img/CYCLE2.png" alt="Motorcycle" width="40" height="40" class="motorcycle-icon">
-                Motorcycle
-            </button>
-        </div>
-
-        <div class="search-section">
-            <div class="search-form">
-                <div class="dropdown" style="position:relative;">
-                    <div id="customServiceSelect" class="custom-select" style="width:160px; padding:8px 12px; border-radius:6px; border:1px solid #ccc; background:#fff; cursor:pointer;">
-                        <span id="selectedService" style="font-weight:bold;">Driver</span>
-                        <span style="float:right;">&#9662;</span>
+    <main class="site-main">
+        <section class="hero-shell">
+            <div class="hero-card">
+                <div class="hero-copy">
+                    <span class="eyebrow">Professional transport platform</span>
+                    <h1>Book trusted mobility services with the structure of a real marketplace.</h1>
+                    <p class="hero-subtitle">
+                        DriveSasa helps users discover drivers, car partners, and ride-ready transport options
+                        through a cleaner experience built for trust, speed, and future app growth.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="primary-cta" onclick="document.getElementById('searchPanel').scrollIntoView({behavior:'smooth'})">Start search</button>
+                        <a class="secondary-cta" href="carpartners2.html">Explore car partners</a>
                     </div>
-                    <div id="serviceOptions" class="custom-options" style="display:none; position:absolute; top:40px; left:0; width:100%; background:#fff; border:1px solid #ccc; border-radius:6px; z-index:10;">
-                        <div class="option" data-value="Driver" style="padding:8px 12px; font-weight:bold; cursor:pointer;">Driver</div>
-                        <div class="option" data-value="Car Driver" style="padding:8px 12px; cursor:pointer;">Car Driver</div>
-                        <div class="option" data-value="Car Partner" style="padding:8px 12px; cursor:pointer;">Car Partner</div>
-                        <div class="option" data-value="Car Hire" style="padding:8px 12px; cursor:pointer;">Car Hire</div>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <strong>120+</strong>
+                            <span>Verified providers</span>
+                        </div>
+                        <div class="stat-card">
+                            <strong>4.8/5</strong>
+                            <span>Average satisfaction</span>
+                        </div>
+                        <div class="stat-card">
+                            <strong>24/7</strong>
+                            <span>Search availability</span>
+                        </div>
                     </div>
                 </div>
-                <div class="dropdown">
-                    <select>
-                        <option>Location?</option>
-                        <option>Nairobi</option>
-                        <option>Mombasa</option>
-                        <option>Kisumu</option>
+
+                <div class="hero-visual">
+                    <div class="hero-preview">
+                        <div class="preview-badge">Live dispatch ready</div>
+                        <img src="img/car.png" alt="Featured vehicle" class="car-image">
+                        <div class="preview-panel">
+                            <strong>DriveSasa Match</strong>
+                            <span>Get matched by service type, city, price, and response speed.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="search-panel surface-card" id="searchPanel">
+            <div class="section-title">
+                <span class="section-kicker">Quick search</span>
+                <h2>Find the right service in seconds</h2>
+                <p>Search flows are cleaner now and can later connect to live data, saved searches, and booking history.</p>
+            </div>
+
+            <div class="vehicle-tabs">
+                <button class="tab active" type="button" data-vehicle="car">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                    </svg>
+                    Car services
+                </button>
+                <button class="tab" type="button" data-vehicle="motorcycle">
+                    <img src="img/CYCLE2.png" alt="" width="28" height="28" class="motorcycle-icon">
+                    Motorcycle services
+                </button>
+            </div>
+
+            <form class="search-form" id="marketSearchForm">
+                <label class="field">
+                    <span>Service</span>
+                    <select id="serviceSelect"></select>
+                </label>
+                <label class="field">
+                    <span>Location</span>
+                    <select id="locationSelect">
+                        <option value="Nairobi">Nairobi</option>
+                        <option value="Mombasa">Mombasa</option>
+                        <option value="Kisumu">Kisumu</option>
+                        <option value="Nakuru">Nakuru</option>
                     </select>
-                </div>
-                <button class="search-btn">Search</button>
+                </label>
+                <label class="field">
+                    <span>Budget</span>
+                    <select id="budgetSelect">
+                        <option value="Flexible">Flexible budget</option>
+                        <option value="Under KES 3,000">Under KES 3,000</option>
+                        <option value="KES 3,000 - 6,000">KES 3,000 - 6,000</option>
+                        <option value="Above KES 6,000">Above KES 6,000</option>
+                    </select>
+                </label>
+                <button class="search-btn" type="submit">Search now</button>
+            </form>
+
+            <div class="search-feedback" id="searchFeedback" aria-live="polite">
+                Start by choosing a vehicle type and service. This can later route users into live results.
             </div>
-        </div>
+        </section>
+
+        <section class="feature-section">
+            <div class="section-title">
+                <span class="section-kicker">Why this feels better</span>
+                <h2>A homepage with stronger product clarity</h2>
+                <p>The old version looked like a school project. This version explains what the platform does, builds trust, and pushes users toward action.</p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <strong>Cleaner first impression</strong>
+                    <p>A sharper layout, stronger typography, and a premium hero make the brand feel more serious right away.</p>
+                </article>
+                <article class="feature-card">
+                    <strong>Actionable search entry</strong>
+                    <p>Instead of a vague dropdown, users can search by service, city, and budget with a clearer workflow.</p>
+                </article>
+                <article class="feature-card">
+                    <strong>Built for app growth</strong>
+                    <p>The structure now supports later additions like live listings, auth, payments, support chat, and admin approval.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="marketplace-section">
+            <div class="section-title">
+                <span class="section-kicker">Marketplace preview</span>
+                <h2>Services users can discover</h2>
+                <p>These cards make the ecosystem easier to understand and guide users to the right page faster.</p>
+            </div>
+
+            <div class="service-grid">
+                <article class="service-card">
+                    <div class="service-icon">01</div>
+                    <h3>Professional drivers</h3>
+                    <p>Hire experienced drivers for personal, corporate, or schedule-based movement needs.</p>
+                    <a href="drivers.html">View drivers</a>
+                </article>
+                <article class="service-card">
+                    <div class="service-icon">02</div>
+                    <h3>Car partners</h3>
+                    <p>Browse verified car partners with pricing, response speed, and service categories.</p>
+                    <a href="carpartners2.html">View partners</a>
+                </article>
+                <article class="service-card">
+                    <div class="service-icon">03</div>
+                    <h3>Future booking flows</h3>
+                    <p>Prepare for car hire, airport transfers, recurring bookings, and client account management.</p>
+                    <a href="signup.html">Join early</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="workflow-section surface-card" id="how-it-works">
+            <div class="section-title">
+                <span class="section-kicker">How it works</span>
+                <h2>Simple for users, scalable for the business</h2>
+            </div>
+            <div class="workflow-grid">
+                <article class="workflow-card">
+                    <span>1</span>
+                    <strong>Choose a service</strong>
+                    <p>Select whether the user needs a driver, car partner, or another transport option.</p>
+                </article>
+                <article class="workflow-card">
+                    <span>2</span>
+                    <strong>Compare trusted options</strong>
+                    <p>Use ratings, verification, city coverage, and price to shortlist the right provider.</p>
+                </article>
+                <article class="workflow-card">
+                    <span>3</span>
+                    <strong>Book and manage later</strong>
+                    <p>Connect this flow to bookings, invoices, chat, and notifications when the backend is ready.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="download-section" id="contact">
+            <div class="download-content">
+                <h2>Build DriveSasa into a serious app</h2>
+                <p>Next strong additions: user dashboards, admin moderation, live chat, booking status updates, payments, and analytics.</p>
+            </div>
+            <div class="download-logo">
+                <img src="img/Dlogo2.png" alt="DriveSasa Logo">
+                <span class="logo-text">DRIVE<span class="sasa">SASA</span></span>
+                        <a class="download-link" href="requests.html">Open requests</a>
+            </div>
+        </section>
     </main>
 
-    <section class="download-section">
-        <div class="download-content">
-            <h2>Download Drivesasa<br>App Now</h2>
-            <p>Reliable Drivers • Trusted Cars • Simple Solutions</p>
-        </div>
-        <div class="download-logo">
-            <img src="img/Dlogo2.png" alt="DriveSasa Logo">
-            <span class="logo-text">DRIVE<span class="sasa">SASA</span></span>
-        </div>
-    </section>
     <script>
-        function selectVehicle(type) {
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            event.target.closest('.tab').classList.add('active');
-            
-            const serviceSelect = document.getElementById('serviceSelect');
-            serviceSelect.innerHTML = '';
-            
-            if (type === 'car') {
-                serviceSelect.innerHTML = `
-                    <option><span style='font-weight:bold;'>Driver</span></option>
-                    <option>Car Partner</option>
-                    <option>Car Hire</option>
-                `;
-            } else {
-                serviceSelect.innerHTML = `
-                    <option><span style='font-weight:bold;'>Rider</span></option>
-                    <option>Motorcycle Rider</option>
-                    <option>Motorcycle Partner</option>
-                    <option>Motorcycle Hire</option>
-                `;
-            }
-        }
-            function selectVehicle(type) {
-                const tabs = document.querySelectorAll('.tab');
-                tabs.forEach(tab => tab.classList.remove('active'));
-                event.target.closest('.tab').classList.add('active');
-                const customServiceSelect = document.getElementById('customServiceSelect');
-                const selectedService = document.getElementById('selectedService');
-                const serviceOptions = document.getElementById('serviceOptions');
-                if (type === 'car') {
-                    selectedService.innerHTML = '<span style="font-weight:bold;">Driver</span>';
-                    serviceOptions.innerHTML = `
-                        <div class="option" data-value="Driver" style="padding:8px 12px; font-weight:bold; cursor:pointer;">Driver</div>
-                        <div class="option" data-value="Car Driver" style="padding:8px 12px; cursor:pointer;">Car Driver</div>
-                        <div class="option" data-value="Car Partner" style="padding:8px 12px; cursor:pointer;">Car Partner</div>
-                        <div class="option" data-value="Car Hire" style="padding:8px 12px; cursor:pointer;">Car Hire</div>
-                    `;
-                } else {
-                    selectedService.innerHTML = '<span style="font-weight:bold;">Rider</span>';
-                    serviceOptions.innerHTML = `
-                        <div class="option" data-value="Rider" style="padding:8px 12px; font-weight:bold; cursor:pointer;">Rider</div>
-                        <div class="option" data-value="Motorcycle Rider" style="padding:8px 12px; cursor:pointer;">Motorcycle Rider</div>
-                        <div class="option" data-value="Motorcycle Partner" style="padding:8px 12px; cursor:pointer;">Motorcycle Partner</div>
-                        <div class="option" data-value="Motorcycle Hire" style="padding:8px 12px; cursor:pointer;">Motorcycle Hire</div>
-                    `;
-                }
-            }
+        const serviceMap = {
+            car: [
+                { label: "Driver", target: "drivers.html" },
+                { label: "Car Partner", target: "carpartners2.html" },
+                { label: "Car Hire", target: "signup.html" }
+            ],
+            motorcycle: [
+                { label: "Rider", target: "signup.html" },
+                { label: "Motorcycle Partner", target: "signup.html" },
+                { label: "Motorcycle Hire", target: "signup.html" }
+            ]
+        };
 
-            // Custom dropdown logic
-            document.addEventListener('DOMContentLoaded', function() {
-                const customServiceSelect = document.getElementById('customServiceSelect');
-                const selectedService = document.getElementById('selectedService');
-                const serviceOptions = document.getElementById('serviceOptions');
-                customServiceSelect.addEventListener('click', function(e) {
-                    serviceOptions.style.display = serviceOptions.style.display === 'block' ? 'none' : 'block';
-                });
-                serviceOptions.addEventListener('click', function(e) {
-                    if (e.target.classList.contains('option')) {
-                        selectedService.innerHTML = e.target.style.fontWeight === 'bold' ? `<span style='font-weight:bold;'>${e.target.textContent}</span>` : e.target.textContent;
-                        serviceOptions.style.display = 'none';
-                    }
-                });
-                document.addEventListener('click', function(e) {
-                    if (!customServiceSelect.contains(e.target) && !serviceOptions.contains(e.target)) {
-                        serviceOptions.style.display = 'none';
-                    }
-                });
+        const tabs = Array.from(document.querySelectorAll(".tab"));
+        const serviceSelect = document.getElementById("serviceSelect");
+        const searchFeedback = document.getElementById("searchFeedback");
+        const marketSearchForm = document.getElementById("marketSearchForm");
+        let activeVehicle = "car";
+
+        function renderServices(vehicleType) {
+            serviceSelect.innerHTML = "";
+
+            serviceMap[vehicleType].forEach(function(service) {
+                const option = document.createElement("option");
+                option.value = service.target;
+                option.textContent = service.label;
+                serviceSelect.appendChild(option);
             });
+        }
+
+        tabs.forEach(function(tab) {
+            tab.addEventListener("click", function() {
+                tabs.forEach(function(item) {
+                    item.classList.remove("active");
+                });
+
+                tab.classList.add("active");
+                activeVehicle = tab.dataset.vehicle;
+                renderServices(activeVehicle);
+                searchFeedback.textContent = "Showing " + activeVehicle + " service options. Pick one and continue.";
+            });
+        });
+
+        marketSearchForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const selectedLabel = serviceSelect.options[serviceSelect.selectedIndex].textContent;
+            const location = document.getElementById("locationSelect").value;
+            const budget = document.getElementById("budgetSelect").value;
+            const targetPage = serviceSelect.value;
+
+            searchFeedback.textContent = selectedLabel + " selected for " + location + " with " + budget + ". Redirecting...";
+
+            setTimeout(function() {
+                window.location.href = targetPage;
+            }, 500);
+        });
+
+        renderServices(activeVehicle);
     </script>
 </body>
 </html>

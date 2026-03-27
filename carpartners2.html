@@ -3,63 +3,705 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DriveSasa - Car Partners (Page 2)</title>
+    <title>DriveSasa - Premium Car Partners</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="auth.css">
     <style>
-        .car-partner-list {
-            max-width: 900px;
-            margin: 32px auto;
+        :root {
+            --brand: #ef4d37;
+            --brand-dark: #c83d2a;
+            --ink: #172033;
+            --muted: #60708a;
+            --line: rgba(23, 32, 51, 0.1);
+            --surface: rgba(255, 255, 255, 0.88);
+            --soft: #f4f8f5;
+            --success: #0d8f5b;
+            --warning: #f59e0b;
+            --shadow: 0 24px 60px rgba(13, 24, 43, 0.12);
         }
-        .car-partner-row {
-            display: flex;
-            gap: 24px;
-            margin-bottom: 32px;
-            align-items: center;
+
+        * {
+            box-sizing: border-box;
         }
-        .car-partner-img {
-            width: 260px;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top left, rgba(239, 77, 55, 0.12), transparent 28%),
+                radial-gradient(circle at right, rgba(46, 204, 113, 0.16), transparent 24%),
+                linear-gradient(180deg, #eef8ee 0%, #f7f9fc 44%, #ffffff 100%);
         }
-        .car-partner-card {
-            background: #e6f7d9;
-            border-radius: 16px;
-            padding: 24px 20px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+
+        a {
+            color: inherit;
         }
-        .car-partner-name {
-            font-weight: bold;
-            font-size: 1.2em;
-            color: #222;
-            display: flex;
+
+        .site-shell {
+            width: min(1180px, calc(100% - 32px));
+            margin: 0 auto 48px;
+        }
+
+        .navbar {
+            width: min(1180px, calc(100% - 32px));
+            margin: 18px auto 0;
+            padding: 16px 22px;
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 18px 44px rgba(18, 28, 45, 0.08);
+        }
+
+        .nav-menu a.active,
+        .dropdown-content a.active {
+            color: var(--brand);
+            border-bottom-color: var(--brand);
+        }
+
+        .page-hero {
+            position: relative;
+            overflow: hidden;
+            margin-top: 26px;
+            padding: 34px;
+            border-radius: 34px;
+            background:
+                linear-gradient(135deg, rgba(12, 24, 45, 0.96), rgba(20, 73, 60, 0.86)),
+                url("img/cars/pexels-mikebirdy-18231626.jpg") center/cover;
+            color: #fff;
+            box-shadow: var(--shadow);
+        }
+
+        .page-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(120deg, rgba(239, 77, 55, 0.22), transparent 30%),
+                linear-gradient(180deg, transparent 0%, rgba(6, 12, 24, 0.16) 100%);
+            pointer-events: none;
+        }
+
+        .hero-grid,
+        .section-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            gap: 28px;
+        }
+
+        .hero-grid {
+            grid-template-columns: 1.3fr 0.9fr;
+            align-items: end;
+        }
+
+        .eyebrow {
+            display: inline-flex;
             align-items: center;
             gap: 8px;
+            margin-bottom: 14px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            font-size: 0.86rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
-        .car-partner-details {
-            font-size: 1em;
-            color: #333;
+
+        .hero-copy h1 {
+            margin: 0 0 16px;
+            font-size: clamp(2.2rem, 5vw, 4.2rem);
+            line-height: 1.02;
         }
-        .other-btn {
-            margin-top: 8px;
-            padding: 8px 18px;
-            border: 1px solid #222;
-            background: #fff;
-            border-radius: 6px;
+
+        .hero-copy p {
+            max-width: 640px;
+            margin: 0 0 22px;
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 26px;
+        }
+
+        .hero-btn,
+        .secondary-btn,
+        .ghost-btn,
+        .pill-btn,
+        .action-btn {
+            border: none;
+            border-radius: 999px;
             cursor: pointer;
-            font-size: 1em;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
         }
-        .car-partners-title {
-            color: #f44336;
-            font-size: 2em;
-            font-weight: bold;
-            margin-bottom: 32px;
-            text-align: left;
+
+        .hero-btn:hover,
+        .secondary-btn:hover,
+        .ghost-btn:hover,
+        .pill-btn:hover,
+        .action-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .hero-btn {
+            padding: 14px 22px;
+            background: #fff;
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .secondary-btn {
+            padding: 14px 22px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .hero-stat {
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-stat strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 1.4rem;
+        }
+
+        .hero-stat span {
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 0.92rem;
+        }
+
+        .hero-panel,
+        .surface-card {
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.94);
+            color: var(--ink);
+            box-shadow: 0 22px 60px rgba(11, 16, 30, 0.16);
+        }
+
+        .hero-panel {
+            padding: 22px;
+        }
+
+        .hero-panel h2 {
+            margin: 0 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .hero-panel p {
+            margin: 0 0 18px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .filter-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .field {
+            display: grid;
+            gap: 6px;
+        }
+
+        .field label {
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: #fff;
+            color: var(--ink);
+            font: inherit;
+        }
+
+        .field textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .submit-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+
+        .pill-btn {
+            padding: 14px 18px;
+            background: var(--brand);
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 16px 30px rgba(239, 77, 55, 0.24);
+        }
+
+        .ghost-btn {
+            padding: 14px 18px;
+            background: #fff;
+            color: var(--ink);
+            border: 1px solid var(--line);
+            font-weight: 700;
+        }
+
+        .trust-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .trust-chip {
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: var(--soft);
+            color: var(--ink);
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .content-stack {
+            display: grid;
+            gap: 26px;
+            margin-top: 28px;
+        }
+
+        .section-grid {
+            grid-template-columns: 0.92fr 1.38fr;
+            align-items: start;
+        }
+
+        .surface-card {
+            padding: 24px;
+            border: 1px solid rgba(13, 24, 43, 0.06);
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .section-head h2,
+        .section-head h3 {
+            margin: 0;
+        }
+
+        .section-head p {
+            margin: 6px 0 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .micro-note {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .insight-list,
+        .feature-list,
+        .documents-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .insight-item,
+        .feature-item,
+        .documents-list li {
+            padding: 14px 16px;
+            border-radius: 18px;
+            background: #f8fbf9;
+            border: 1px solid rgba(23, 32, 51, 0.06);
+        }
+
+        .insight-item strong,
+        .feature-item strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .feature-item span,
+        .insight-item span,
+        .documents-list span {
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .partner-toolbar {
+            display: grid;
+            grid-template-columns: 1.1fr repeat(3, minmax(0, 0.55fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .toolbar-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 14px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: #fff;
+        }
+
+        .toolbar-input input,
+        .toolbar-input select {
+            width: 100%;
+            padding: 14px 0;
+            border: 0;
+            background: transparent;
+            color: var(--ink);
+            font: inherit;
+            outline: none;
+        }
+
+        .result-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .result-summary strong {
+            font-size: 1rem;
+        }
+
+        .partner-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .partner-card {
+            padding: 18px;
+            border-radius: 24px;
+            background: #fff;
+            border: 1px solid rgba(23, 32, 51, 0.08);
+            box-shadow: 0 16px 34px rgba(14, 25, 43, 0.06);
+        }
+
+        .partner-main {
+            display: grid;
+            grid-template-columns: 230px 1fr;
+            gap: 18px;
+        }
+
+        .partner-media {
+            position: relative;
+            overflow: hidden;
+            min-height: 196px;
+            border-radius: 20px;
+        }
+
+        .partner-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .availability-tag,
+        .verified-tag,
+        .price-tag {
+            position: absolute;
+            left: 14px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            backdrop-filter: blur(6px);
+        }
+
+        .availability-tag {
+            top: 14px;
+            background: rgba(13, 143, 91, 0.9);
+            color: #fff;
+        }
+
+        .price-tag {
+            bottom: 14px;
+            background: rgba(10, 18, 33, 0.78);
+            color: #fff;
+        }
+
+        .verified-tag {
+            top: 14px;
+            right: 14px;
+            left: auto;
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--ink);
+        }
+
+        .partner-topline {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 12px;
+        }
+
+        .partner-name-wrap h3 {
+            margin: 0 0 6px;
+            font-size: 1.35rem;
+        }
+
+        .partner-name-wrap p,
+        .partner-copy,
+        .meta-text {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .rating-box {
+            min-width: 110px;
+            text-align: right;
+        }
+
+        .rating-box strong {
+            display: block;
+            font-size: 1.2rem;
+            color: var(--warning);
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .meta-pill {
+            padding: 12px 14px;
+            border-radius: 18px;
+            background: var(--soft);
+        }
+
+        .meta-pill strong {
+            display: block;
+            font-size: 0.88rem;
+            margin-bottom: 4px;
+        }
+
+        .meta-pill span {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .partner-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+        }
+
+        .partner-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .badge {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: #fff5ee;
+            color: var(--brand-dark);
+            font-size: 0.84rem;
+            font-weight: 700;
+        }
+
+        .partner-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .action-btn {
+            padding: 12px 16px;
+            font-weight: 700;
+        }
+
+        .action-btn.primary {
+            background: var(--brand);
+            color: #fff;
+        }
+
+        .action-btn.secondary {
+            background: #fff;
+            color: var(--ink);
+            border: 1px solid var(--line);
+        }
+
+        .saved-state {
+            background: #fff1db;
+            color: #8b5a00;
+        }
+
+        .cta-panel {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 20px;
+            padding: 26px 28px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, #172033, #213a61);
+            color: #fff;
+            box-shadow: var(--shadow);
+        }
+
+        .cta-panel h2 {
+            margin: 0 0 8px;
+            font-size: clamp(1.6rem, 3vw, 2.3rem);
+        }
+
+        .cta-panel p {
+            margin: 0;
+            max-width: 700px;
+            color: rgba(255, 255, 255, 0.78);
+            line-height: 1.7;
+        }
+
+        .documents-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .page-footer-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-top: 24px;
+            padding: 0 2px;
+        }
+
+        .footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid var(--line);
+            text-decoration: none;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-grid,
+            .section-grid,
+            .partner-main,
+            .cta-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .partner-toolbar,
+            .meta-grid,
+            .hero-stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 760px) {
+            .navbar {
+                padding: 16px;
+                border-radius: 20px;
+            }
+
+            .site-shell {
+                width: min(100% - 20px, 1180px);
+            }
+
+            .page-hero,
+            .surface-card,
+            .cta-panel {
+                padding: 20px;
+                border-radius: 24px;
+            }
+
+            .hero-stats,
+            .partner-toolbar,
+            .meta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-head,
+            .result-summary,
+            .partner-topline,
+            .partner-footer,
+            .page-footer-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .partner-main {
+                gap: 14px;
+            }
+
+            .partner-media {
+                min-height: 210px;
+            }
+
+            .partner-actions,
+            .submit-row,
+            .hero-actions {
+                width: 100%;
+            }
+
+            .hero-btn,
+            .secondary-btn,
+            .pill-btn,
+            .ghost-btn,
+            .action-btn,
+            .footer-link {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .rating-box {
+                text-align: left;
+            }
         }
     </style>
 </head>
@@ -73,15 +715,15 @@
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropbtn">Services ▼</a>
+                    <a href="#" class="dropbtn active">Services ▼</a>
                     <div class="dropdown-content">
                         <a href="drivers.html">Driver</a>
-                        <a href="carpartners.html">Car Partner</a>
+                        <a href="carpartners2.html" class="active">Car Partner</a>
                         <a href="#">Car Hire</a>
                     </div>
                 </li>
-                <li><a href="#">How it works</a></li>
-                <li><a href="#">Contact us</a></li>
+                <li><a href="#how-it-works">How it works</a></li>
+                <li><a href="requests.html">Requests</a></li>
             </ul>
             <div class="auth-buttons">
                 <button class="sign-in" onclick="window.location.href='signin.html'">Sign In</button>
@@ -89,49 +731,539 @@
             </div>
         </nav>
     </header>
-    <main>
-        <div class="car-partner-list">
-            <div class="car-partners-title">Car Partners</div>
-            <div class="car-partner-row">
-                <img src="img/cars/pexels-ajdin-coric-504250286-31574920.jpg" alt="Car" class="car-partner-img">
-                <div class="car-partner-card">
-                    <div class="car-partner-name">MARY NJERI <img src="img/download.png" alt="Verified" style="width:24px;height:24px;vertical-align:middle;margin-left:4px;"></div>
-                    <div class="car-partner-details">
-                        <div><strong>Experience:</strong> 3 Years</div>
-                        <div><strong>Driver Type:</strong> Corporate</div>
-                        <div><strong>Contact:</strong> 0722 111 222</div>
+
+    <main class="site-shell">
+        <section class="page-hero">
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <div class="eyebrow">Marketplace Ready Experience</div>
+                    <h1>Find vetted car partners faster and manage every inquiry with more confidence.</h1>
+                    <p>
+                        This upgraded page is built like a real marketplace screen: stronger trust signals,
+                        richer profile details, clear pricing, inquiry capture, search and sorting controls,
+                        and UI patterns you can later connect to a database, payments, chat, and admin tools.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="hero-btn" onclick="document.getElementById('partnerDirectory').scrollIntoView({behavior:'smooth'})">Browse partners</button>
+                        <button class="secondary-btn" onclick="document.getElementById('quickInquiry').scrollIntoView({behavior:'smooth'})">Post requirements</button>
                     </div>
-                    <button class="other-btn">Any other thing</button>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <strong>120+</strong>
+                            <span>Verified car partners</span>
+                        </div>
+                        <div class="hero-stat">
+                            <strong>4.8/5</strong>
+                            <span>Average booking rating</span>
+                        </div>
+                        <div class="hero-stat">
+                            <strong>15 min</strong>
+                            <span>Average response time</span>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="hero-panel">
+                    <h2>Quick match request</h2>
+                    <p>Capture serious demand from users now, then connect this form to email, WhatsApp, Supabase, Firebase, or your backend later.</p>
+                    <form id="quickInquiry" class="filter-grid">
+                        <div class="field">
+                            <label for="requestType">Need type</label>
+                            <select id="requestType" name="requestType">
+                                <option>Corporate transport</option>
+                                <option>Personal use</option>
+                                <option>Airport transfer</option>
+                                <option>Ride-hailing partnership</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="requestLocation">City</label>
+                            <select id="requestLocation" name="requestLocation">
+                                <option>Nairobi</option>
+                                <option>Mombasa</option>
+                                <option>Kisumu</option>
+                                <option>Nakuru</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="requestBudget">Daily budget range</label>
+                            <input id="requestBudget" name="requestBudget" type="text" placeholder="KES 3,000 - 6,000">
+                        </div>
+                        <div class="submit-row">
+                            <button class="pill-btn" type="submit">Submit request</button>
+                            <button class="ghost-btn" type="button" onclick="document.getElementById('quickInquiry').reset()">Clear form</button>
+                        </div>
+                        <div id="formFeedback" class="micro-note" aria-live="polite">No backend connected yet. This demo stores the latest request inside the browser.</div>
+                    </form>
+                    <div class="trust-row">
+                        <div class="trust-chip">ID verified</div>
+                        <div class="trust-chip">Insurance checked</div>
+                        <div class="trust-chip">Performance rated</div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="content-stack">
+            <div class="section-grid">
+                <aside class="surface-card" id="how-it-works">
+                    <div class="section-head">
+                        <div>
+                            <h2>What makes this feel more professional</h2>
+                            <p>These are the product patterns a real transport marketplace usually needs.</p>
+                        </div>
+                    </div>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <strong>Structured partner profiles</strong>
+                            <span>Ratings, response speed, pricing, fleet type, location, and availability are shown at a glance.</span>
+                        </div>
+                        <div class="feature-item">
+                            <strong>Better conversion points</strong>
+                            <span>Users can browse, save, request a callback, or submit their requirements without getting stuck.</span>
+                        </div>
+                        <div class="feature-item">
+                            <strong>Future app foundation</strong>
+                            <span>The UI is ready for later additions like authentication, payment, chat, maps, admin approval, and analytics.</span>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="surface-card">
+                    <div class="section-head">
+                        <div>
+                            <h2>Operational insights</h2>
+                            <p>Useful trust and business information that helps buyers decide faster.</p>
+                        </div>
+                        <span class="micro-note">Updated today</span>
+                    </div>
+                    <div class="insight-list">
+                        <div class="insight-item">
+                            <strong>Most requested segment</strong>
+                            <span>Corporate and airport transfer partnerships are leading demand because users want cleaner, predictable booking flows.</span>
+                        </div>
+                        <div class="insight-item">
+                            <strong>Missing app features you should add later</strong>
+                            <span>Real-time messaging, booking history, wallet or payment tracking, verified document uploads, map-based discovery, and admin moderation.</span>
+                        </div>
+                        <div class="insight-item">
+                            <strong>Trust signals that matter</strong>
+                            <span>Verification badges, review count, pricing transparency, response SLA, and service coverage are stronger than generic filler text.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="car-partner-row">
-                <img src="img/cars/pexels-irfan-rahat-164426592-11114271.jpg" alt="Car" class="car-partner-img">
-                <div class="car-partner-card">
-                    <div class="car-partner-name">DAVID OTIENO <img src="img/download.png" alt="Verified" style="width:24px;height:24px;vertical-align:middle;margin-left:4px;"></div>
-                    <div class="car-partner-details">
-                        <div><strong>Experience:</strong> 5 Years</div>
-                        <div><strong>Driver Type:</strong> Personal</div>
-                        <div><strong>Contact:</strong> 0733 555 888</div>
+
+            <section class="surface-card" id="partnerDirectory">
+                <div class="section-head">
+                    <div>
+                        <h2>Car Partner Directory</h2>
+                        <p>Browse a richer list of car partners using filters that you can later connect to live data.</p>
                     </div>
-                    <button class="other-btn">Any other thing</button>
+                    <span class="micro-note">Prototype with live browser interactions</span>
                 </div>
-            </div>
-            <div class="car-partner-row">
-                <img src="img/cars/pexels-kipras-zabeliauskas-1607943-5704347.jpg" alt="Car" class="car-partner-img">
-                <div class="car-partner-card">
-                    <div class="car-partner-name">FATMA ABDALLA <img src="img/download.png" alt="Verified" style="width:24px;height:24px;vertical-align:middle;margin-left:4px;"></div>
-                    <div class="car-partner-details">
-                        <div><strong>Experience:</strong> 4 Years</div>
-                        <div><strong>Driver Type:</strong> Online</div>
-                        <div><strong>Contact:</strong> 0711 333 444</div>
+
+                <div class="partner-toolbar">
+                    <label class="toolbar-input" aria-label="Search partners">
+                        <span>Search</span>
+                        <input id="searchInput" type="search" placeholder="Name, city, or service type">
+                    </label>
+                    <label class="toolbar-input" aria-label="Filter by location">
+                        <span class="sr-only">Location</span>
+                        <select id="locationFilter">
+                            <option value="all">All cities</option>
+                            <option value="Nairobi">Nairobi</option>
+                            <option value="Mombasa">Mombasa</option>
+                            <option value="Kisumu">Kisumu</option>
+                        </select>
+                    </label>
+                    <label class="toolbar-input" aria-label="Filter by service">
+                        <span class="sr-only">Service type</span>
+                        <select id="serviceFilter">
+                            <option value="all">All services</option>
+                            <option value="Corporate">Corporate</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Airport">Airport</option>
+                            <option value="Online">Online</option>
+                        </select>
+                    </label>
+                    <label class="toolbar-input" aria-label="Sort partners">
+                        <span class="sr-only">Sort by</span>
+                        <select id="sortFilter">
+                            <option value="rating">Top rated</option>
+                            <option value="price">Lowest price</option>
+                            <option value="speed">Fastest response</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="result-summary">
+                    <strong id="resultsCount">Showing 4 partners</strong>
+                    <span class="micro-note">Tip: shortlist partners here, then store the saved state on user accounts later.</span>
+                </div>
+
+                <div id="partnerGrid" class="partner-grid">
+                    <article class="partner-card" data-name="Mary Njeri" data-location="Nairobi" data-service="Corporate" data-rating="4.9" data-price="4800" data-speed="12">
+                        <div class="partner-main">
+                            <div class="partner-media">
+                                <img src="img/cars/pexels-ajdin-coric-504250286-31574920.jpg" alt="Toyota Axio owned by Mary Njeri">
+                                <div class="availability-tag">Available today</div>
+                                <div class="verified-tag">Verified</div>
+                                <div class="price-tag">From KES 4,800/day</div>
+                            </div>
+                            <div>
+                                <div class="partner-topline">
+                                    <div class="partner-name-wrap">
+                                        <h3>Mary Njeri</h3>
+                                        <p>Corporate mobility partner in Nairobi</p>
+                                    </div>
+                                    <div class="rating-box">
+                                        <strong>4.9 ★</strong>
+                                        <span class="meta-text">82 reviews</span>
+                                    </div>
+                                </div>
+                                <p class="partner-copy">Clean sedan fleet, punctual dispatching, and strong support for executive transfers, hotel pickups, and recurring office bookings.</p>
+                                <div class="meta-grid">
+                                    <div class="meta-pill"><strong>Fleet</strong><span>Toyota Axio, Premio</span></div>
+                                    <div class="meta-pill"><strong>Response</strong><span>12 mins avg</span></div>
+                                    <div class="meta-pill"><strong>Coverage</strong><span>Nairobi, Kiambu</span></div>
+                                    <div class="meta-pill"><strong>Experience</strong><span>5 years</span></div>
+                                </div>
+                                <div class="partner-footer">
+                                    <div class="partner-badges">
+                                        <span class="badge">Corporate</span>
+                                        <span class="badge">Airport pickup</span>
+                                        <span class="badge">Weekly invoicing</span>
+                                    </div>
+                                    <div class="partner-actions">
+                                        <button class="action-btn secondary save-btn" type="button">Save</button>
+                                        <button class="action-btn secondary" type="button" onclick="createPartnerBooking('Mary Njeri', 'Corporate', 'Nairobi')">Book partner</button>
+                                        <button class="action-btn primary" type="button" onclick="window.location.href='partner-profile.html?partner=mary-njeri'">View profile</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="partner-card" data-name="David Otieno" data-location="Kisumu" data-service="Personal" data-rating="4.7" data-price="3500" data-speed="18">
+                        <div class="partner-main">
+                            <div class="partner-media">
+                                <img src="img/cars/pexels-irfan-rahat-164426592-11114271.jpg" alt="Honda Fit managed by David Otieno">
+                                <div class="availability-tag">Available in 2 hrs</div>
+                                <div class="verified-tag">Verified</div>
+                                <div class="price-tag">From KES 3,500/day</div>
+                            </div>
+                            <div>
+                                <div class="partner-topline">
+                                    <div class="partner-name-wrap">
+                                        <h3>David Otieno</h3>
+                                        <p>Flexible personal-use partner in Kisumu</p>
+                                    </div>
+                                    <div class="rating-box">
+                                        <strong>4.7 ★</strong>
+                                        <span class="meta-text">56 reviews</span>
+                                    </div>
+                                </div>
+                                <p class="partner-copy">A practical option for daily errands, family pickups, and dependable short-term use with a simple approval process.</p>
+                                <div class="meta-grid">
+                                    <div class="meta-pill"><strong>Fleet</strong><span>Honda Fit</span></div>
+                                    <div class="meta-pill"><strong>Response</strong><span>18 mins avg</span></div>
+                                    <div class="meta-pill"><strong>Coverage</strong><span>Kisumu CBD, Airport</span></div>
+                                    <div class="meta-pill"><strong>Experience</strong><span>6 years</span></div>
+                                </div>
+                                <div class="partner-footer">
+                                    <div class="partner-badges">
+                                        <span class="badge">Personal</span>
+                                        <span class="badge">Family trips</span>
+                                        <span class="badge">Verified documents</span>
+                                    </div>
+                                    <div class="partner-actions">
+                                        <button class="action-btn secondary save-btn" type="button">Save</button>
+                                        <button class="action-btn secondary" type="button" onclick="createPartnerBooking('David Otieno', 'Personal', 'Kisumu')">Book partner</button>
+                                        <button class="action-btn primary" type="button" onclick="window.location.href='partner-profile.html?partner=david-otieno'">View profile</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="partner-card" data-name="Fatma Abdalla" data-location="Mombasa" data-service="Online" data-rating="4.8" data-price="4200" data-speed="10">
+                        <div class="partner-main">
+                            <div class="partner-media">
+                                <img src="img/cars/pexels-kipras-zabeliauskas-1607943-5704347.jpg" alt="Mazda Demio managed by Fatma Abdalla">
+                                <div class="availability-tag">Ready now</div>
+                                <div class="verified-tag">Verified</div>
+                                <div class="price-tag">From KES 4,200/day</div>
+                            </div>
+                            <div>
+                                <div class="partner-topline">
+                                    <div class="partner-name-wrap">
+                                        <h3>Fatma Abdalla</h3>
+                                        <p>Online work and app-based transport partner in Mombasa</p>
+                                    </div>
+                                    <div class="rating-box">
+                                        <strong>4.8 ★</strong>
+                                        <span class="meta-text">64 reviews</span>
+                                    </div>
+                                </div>
+                                <p class="partner-copy">Suitable for ride-hailing and app-based operations, with flexible schedules, digital reporting, and strong city route knowledge.</p>
+                                <div class="meta-grid">
+                                    <div class="meta-pill"><strong>Fleet</strong><span>Mazda Demio</span></div>
+                                    <div class="meta-pill"><strong>Response</strong><span>10 mins avg</span></div>
+                                    <div class="meta-pill"><strong>Coverage</strong><span>Mombasa Island, Nyali</span></div>
+                                    <div class="meta-pill"><strong>Experience</strong><span>4 years</span></div>
+                                </div>
+                                <div class="partner-footer">
+                                    <div class="partner-badges">
+                                        <span class="badge">Online</span>
+                                        <span class="badge">Night shift ready</span>
+                                        <span class="badge">Performance dashboard</span>
+                                    </div>
+                                    <div class="partner-actions">
+                                        <button class="action-btn secondary save-btn" type="button">Save</button>
+                                        <button class="action-btn secondary" type="button" onclick="createPartnerBooking('Fatma Abdalla', 'Online', 'Mombasa')">Book partner</button>
+                                        <button class="action-btn primary" type="button" onclick="window.location.href='partner-profile.html?partner=fatma-abdalla'">View profile</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="partner-card" data-name="Kevin Mwangi" data-location="Nairobi" data-service="Airport" data-rating="4.6" data-price="3900" data-speed="8">
+                        <div class="partner-main">
+                            <div class="partner-media">
+                                <img src="img/cars/pexels-ajdin-coric-504250286-31574918.jpg" alt="Nissan Note managed by Kevin Mwangi">
+                                <div class="availability-tag">Available tomorrow</div>
+                                <div class="verified-tag">Verified</div>
+                                <div class="price-tag">From KES 3,900/day</div>
+                            </div>
+                            <div>
+                                <div class="partner-topline">
+                                    <div class="partner-name-wrap">
+                                        <h3>Kevin Mwangi</h3>
+                                        <p>Airport and schedule-based transfer partner in Nairobi</p>
+                                    </div>
+                                    <div class="rating-box">
+                                        <strong>4.6 ★</strong>
+                                        <span class="meta-text">39 reviews</span>
+                                    </div>
+                                </div>
+                                <p class="partner-copy">Focused on airport pickups, early departures, and client handovers with reliable ETA communication and organized booking windows.</p>
+                                <div class="meta-grid">
+                                    <div class="meta-pill"><strong>Fleet</strong><span>Nissan Note</span></div>
+                                    <div class="meta-pill"><strong>Response</strong><span>8 mins avg</span></div>
+                                    <div class="meta-pill"><strong>Coverage</strong><span>JKIA, Westlands</span></div>
+                                    <div class="meta-pill"><strong>Experience</strong><span>3 years</span></div>
+                                </div>
+                                <div class="partner-footer">
+                                    <div class="partner-badges">
+                                        <span class="badge">Airport</span>
+                                        <span class="badge">ETA updates</span>
+                                        <span class="badge">Recurring slots</span>
+                                    </div>
+                                    <div class="partner-actions">
+                                        <button class="action-btn secondary save-btn" type="button">Save</button>
+                                        <button class="action-btn secondary" type="button" onclick="createPartnerBooking('Kevin Mwangi', 'Airport', 'Nairobi')">Book partner</button>
+                                        <button class="action-btn primary" type="button" onclick="window.location.href='partner-profile.html?partner=kevin-mwangi'">View profile</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <div class="section-grid" id="partner-support">
+                <section class="surface-card">
+                    <div class="section-head">
+                        <div>
+                            <h3>Partner onboarding checklist</h3>
+                            <p>Features and data you should eventually capture from every partner profile.</p>
+                        </div>
                     </div>
-                    <button class="other-btn">Any other thing</button>
-                </div>
+                    <ul class="documents-list">
+                        <li><strong>National ID and driving credentials</strong><br><span>Support verification and trust scoring.</span></li>
+                        <li><strong>Vehicle inspection and insurance status</strong><br><span>Important for corporate clients and quality control.</span></li>
+                        <li><strong>Availability calendar and booking rules</strong><br><span>Prevents double bookings and wasted follow-up.</span></li>
+                        <li><strong>Wallet, payout, and invoice details</strong><br><span>Needed when you add payments and business reporting.</span></li>
+                    </ul>
+                </section>
+
+                <section class="surface-card">
+                    <div class="section-head">
+                        <div>
+                            <h3>Suggested next app modules</h3>
+                            <p>If you want this to become a professional app, these are the next useful building blocks.</p>
+                        </div>
+                    </div>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <strong>User dashboard</strong>
+                            <span>Saved partners, booking history, invoices, support tickets, and profile settings.</span>
+                        </div>
+                        <div class="feature-item">
+                            <strong>Admin review panel</strong>
+                            <span>Approve new partners, manage flagged accounts, and monitor conversion analytics.</span>
+                        </div>
+                        <div class="feature-item">
+                            <strong>Live communication</strong>
+                            <span>In-app chat, WhatsApp integration, SMS alerts, and booking status notifications.</span>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </div>
-        <div style="display:flex; justify-content:center; margin:40px 0 32px 0;">
-            <button onclick="window.location.href='carpartners.html'" style="padding:10px 24px; border-radius:6px; border:1px solid #222; background:#fff; cursor:pointer; font-size:1em;">Previous Page</button>
-        </div>
+
+            <section class="cta-panel">
+                <div>
+                    <h2>Ready to turn this into a stronger product flow?</h2>
+                    <p>The next clean step is connecting this UI to real data and giving each partner a proper details page, inquiry storage, and admin approval workflow.</p>
+                </div>
+                <button class="hero-btn" type="button" onclick="window.location.href='requests.html'">Open requests center</button>
+            </section>
+
+            <div class="page-footer-nav">
+                <a class="footer-link" href="carpartners.html">← Previous page</a>
+                <span class="micro-note">This page now routes into profile pages, bookings, and stored inquiries.</span>
+            </div>
+        </section>
     </main>
+
+    <script src="js/app-store.js"></script>
+    <script>
+        const partnerGrid = document.getElementById("partnerGrid");
+        const searchInput = document.getElementById("searchInput");
+        const locationFilter = document.getElementById("locationFilter");
+        const serviceFilter = document.getElementById("serviceFilter");
+        const sortFilter = document.getElementById("sortFilter");
+        const resultsCount = document.getElementById("resultsCount");
+        const inquiryForm = document.getElementById("quickInquiry");
+        const feedback = document.getElementById("formFeedback");
+
+        function getCards() {
+            return Array.from(partnerGrid.querySelectorAll(".partner-card"));
+        }
+
+        function updateResultsLabel(visibleCount) {
+            resultsCount.textContent = "Showing " + visibleCount + " partner" + (visibleCount === 1 ? "" : "s");
+        }
+
+        function filterPartners() {
+            const searchValue = searchInput.value.trim().toLowerCase();
+            const selectedLocation = locationFilter.value;
+            const selectedService = serviceFilter.value;
+
+            const cards = getCards();
+
+            cards.forEach(function(card) {
+                const matchesSearch = (card.dataset.name + " " + card.dataset.location + " " + card.dataset.service)
+                    .toLowerCase()
+                    .includes(searchValue);
+                const matchesLocation = selectedLocation === "all" || card.dataset.location === selectedLocation;
+                const matchesService = selectedService === "all" || card.dataset.service === selectedService;
+
+                card.style.display = matchesSearch && matchesLocation && matchesService ? "block" : "none";
+            });
+
+            sortPartners();
+        }
+
+        function sortPartners() {
+            const cards = getCards().filter(function(card) {
+                return card.style.display !== "none";
+            });
+
+            const mode = sortFilter.value;
+
+            cards.sort(function(a, b) {
+                if (mode === "price") {
+                    return Number(a.dataset.price) - Number(b.dataset.price);
+                }
+                if (mode === "speed") {
+                    return Number(a.dataset.speed) - Number(b.dataset.speed);
+                }
+                return Number(b.dataset.rating) - Number(a.dataset.rating);
+            });
+
+            cards.forEach(function(card) {
+                partnerGrid.appendChild(card);
+            });
+
+            updateResultsLabel(cards.length);
+        }
+
+        function prefillInquiry(name, city, type) {
+            document.getElementById("requestType").value = type === "Airport" ? "Airport transfer" : type === "Corporate" ? "Corporate transport" : type === "Online" ? "Ride-hailing partnership" : "Personal use";
+            document.getElementById("requestLocation").value = city;
+            feedback.textContent = "Request prepared for " + name + ". Complete the form above to continue.";
+            document.getElementById("quickInquiry").scrollIntoView({ behavior: "smooth" });
+        }
+
+        function createPartnerBooking(name, type, city) {
+            window.DriveSasaStore.addBooking({
+                id: "booking-" + Date.now(),
+                category: "partner",
+                name: name,
+                serviceType: type,
+                city: city,
+                status: "pending",
+                createdAt: new Date().toISOString()
+            });
+            window.location.href = "requests.html";
+        }
+
+        function wireSaveButtons() {
+            const saved = window.DriveSasaStore.getSaved("partner").map(function(item) {
+                return item.name;
+            });
+
+            document.querySelectorAll(".save-btn").forEach(function(button) {
+                const card = button.closest(".partner-card");
+                const partnerName = card.dataset.name;
+
+                if (saved.includes(partnerName)) {
+                    button.textContent = "Saved";
+                    button.classList.add("saved-state");
+                }
+
+                button.addEventListener("click", function() {
+                    const isSaved = window.DriveSasaStore.toggleSaved("ds_saved_partners", {
+                        name: partnerName,
+                        type: card.dataset.service,
+                        city: card.dataset.location,
+                        rating: card.dataset.rating
+                    }, "name");
+
+                    button.textContent = isSaved ? "Saved" : "Save";
+                    button.classList.toggle("saved-state", isSaved);
+                });
+            });
+        }
+
+        inquiryForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const payload = {
+                type: document.getElementById("requestType").value,
+                city: document.getElementById("requestLocation").value,
+                budget: document.getElementById("requestBudget").value.trim() || "Not provided",
+                submittedAt: new Date().toISOString()
+            };
+
+            payload.id = "inquiry-" + Date.now();
+            payload.createdAt = new Date().toISOString();
+            window.DriveSasaStore.addInquiry(payload);
+            feedback.textContent = "Request saved in this browser for " + payload.city + ". Connect this form to a backend when you are ready.";
+            inquiryForm.reset();
+        });
+
+        [searchInput, locationFilter, serviceFilter].forEach(function(element) {
+            element.addEventListener("input", filterPartners);
+            element.addEventListener("change", filterPartners);
+        });
+
+        sortFilter.addEventListener("change", sortPartners);
+
+        wireSaveButtons();
+        filterPartners();
+    </script>
 </body>
 </html>

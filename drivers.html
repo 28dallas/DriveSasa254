@@ -3,28 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drivers - DriveSasa</title>
-    <link rel="stylesheet" href="drivers.css">
+    <title>DriveSasa - Professional Drivers</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .drivers-shell {
+            width: min(1180px, calc(100% - 32px));
+            margin: 0 auto 48px;
+        }
+
+        .drivers-hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 28px;
+            margin-top: 26px;
+            padding: 34px;
+            border-radius: 34px;
+            background:
+                linear-gradient(135deg, rgba(12, 24, 45, 0.96), rgba(33, 58, 97, 0.9)),
+                radial-gradient(circle at center, rgba(255, 255, 255, 0.06), transparent 60%);
+            color: #fff;
+            box-shadow: 0 24px 60px rgba(12, 22, 40, 0.14);
+        }
+
+        .drivers-hero h1 {
+            margin: 0 0 16px;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            line-height: 1.04;
+        }
+
+        .drivers-hero p {
+            margin: 0 0 22px;
+            color: rgba(255, 255, 255, 0.82);
+            line-height: 1.7;
+        }
+
+        .hero-mini-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .hero-mini-stats div {
+            padding: 16px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-mini-stats strong {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+
+        .hero-mini-stats span {
+            color: rgba(255, 255, 255, 0.74);
+            font-size: 0.92rem;
+        }
+
+        .highlight-panel,
+        .drivers-surface {
+            padding: 24px;
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(13, 24, 43, 0.06);
+            box-shadow: 0 22px 60px rgba(12, 22, 40, 0.08);
+            color: var(--ink);
+        }
+
+        .highlight-panel {
+            align-self: end;
+        }
+
+        .highlight-panel img {
+            width: 100%;
+            max-height: 290px;
+            object-fit: cover;
+            border-radius: 22px;
+            margin-bottom: 18px;
+        }
+
+        .highlight-panel h2 {
+            margin: 0 0 8px;
+            font-size: 1.3rem;
+        }
+
+        .highlight-panel p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .drivers-stack {
+            display: grid;
+            gap: 28px;
+            margin-top: 28px;
+        }
+
+        .toolbar-grid {
+            display: grid;
+            grid-template-columns: 1.2fr repeat(3, minmax(0, 0.7fr)) auto;
+            gap: 12px;
+            align-items: end;
+        }
+
+        .toolbar-field {
+            display: grid;
+            gap: 8px;
+        }
+
+        .toolbar-field span {
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .toolbar-field input,
+        .toolbar-field select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: #fff;
+            color: var(--ink);
+            font: inherit;
+        }
+
+        .drivers-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .driver-card {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 18px;
+            padding: 18px;
+            border-radius: 24px;
+            background: #fff;
+            border: 1px solid rgba(23, 32, 51, 0.08);
+            box-shadow: 0 16px 34px rgba(14, 25, 43, 0.06);
+        }
+
+        .driver-card img {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .driver-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 12px;
+        }
+
+        .driver-top h3 {
+            margin: 0 0 6px;
+            font-size: 1.35rem;
+        }
+
+        .driver-top p,
+        .driver-summary,
+        .driver-note {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .driver-score {
+            text-align: right;
+            min-width: 120px;
+        }
+
+        .driver-score strong {
+            display: block;
+            color: #f59e0b;
+            font-size: 1.18rem;
+        }
+
+        .driver-meta {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .meta-box {
+            padding: 12px 14px;
+            border-radius: 18px;
+            background: #f5f9f6;
+        }
+
+        .meta-box strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.88rem;
+        }
+
+        .meta-box span {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .driver-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+        }
+
+        .chip-row,
+        .driver-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: #fff2ea;
+            color: var(--brand-dark);
+            font-size: 0.84rem;
+            font-weight: 700;
+        }
+
+        .mini-btn {
+            padding: 12px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: #fff;
+            color: var(--ink);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .mini-btn.primary {
+            border: none;
+            background: var(--brand);
+            color: #fff;
+        }
+
+        .mini-btn.saved {
+            background: #fff1db;
+            color: #8b5a00;
+        }
+
+        .results-row,
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .app-footer {
+            margin: 12px auto 40px;
+            width: min(1180px, calc(100% - 32px));
+            padding: 22px 24px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(13, 24, 43, 0.06);
+            box-shadow: 0 18px 40px rgba(12, 22, 40, 0.06);
+        }
+
+        .app-footer p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .drivers-hero,
+            .driver-card,
+            .toolbar-grid,
+            .driver-meta {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .drivers-shell,
+            .app-footer {
+                width: min(100% - 20px, 1180px);
+            }
+
+            .drivers-hero,
+            .drivers-surface,
+            .highlight-panel,
+            .app-footer {
+                padding: 20px;
+                border-radius: 24px;
+            }
+
+            .driver-footer,
+            .results-row,
+            .footer-links {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .driver-score {
+                text-align: left;
+            }
+
+            .hero-mini-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .mini-btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="logo">
                 <img src="img/Dlogo2.png" alt="DriveSasa Logo">
-                <span class="logo-text">DRIVE<span class="sasa">LINK</span></span>
+                <span class="logo-text">DRIVE<span class="sasa">SASA</span></span>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li class="dropdown">
                     <a href="#" class="active">Services ▼</a>
                     <div class="dropdown-content">
-                        <a href="drivers.html">Driver</a>
-                        <a href="carpartners.html">Car Partner</a>
+                        <a href="drivers.html" class="active">Driver</a>
+                        <a href="carpartners2.html">Car Partner</a>
                         <a href="#">Car Hire</a>
                     </div>
                 </li>
-                <li><a href="#">How it works</a></li>
-                <li><a href="#">Contact us</a></li>
+                <li><a href="requests.html">Requests</a></li>
+                <li><a href="#driverSupport">Contact us</a></li>
             </ul>
             <div class="auth-buttons">
                 <button class="sign-in" onclick="window.location.href='signin.html'">Sign In</button>
@@ -33,460 +351,374 @@
         </nav>
     </header>
 
-    <main class="drivers-main">
-        <div class="hero-section">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Your Direct Connection to Drivers Seeking Car Partnerships</h1>
+    <main class="drivers-shell">
+        <section class="drivers-hero">
+            <div>
+                <span class="eyebrow">Driver marketplace</span>
+                <h1>Hire trusted drivers with clearer profiles, faster actions, and app-ready workflows.</h1>
+                <p>
+                    This page now works like a real driver directory: you can search by role, city, and experience,
+                    save favorites, start bookings, and move into dedicated profile pages that can later connect
+                    to messaging, verification, and backend approval.
+                </p>
+                <div class="hero-actions">
+                    <button class="primary-cta" type="button" onclick="document.getElementById('driversDirectory').scrollIntoView({behavior:'smooth'})">Browse drivers</button>
+                    <a class="secondary-cta" href="requests.html">Open requests</a>
                 </div>
-                <div class="hero-image">
-                    <div class="slideshow-container">
-                        <button class="nav-arrow prev" onclick="changeSlide(-1)">‹</button>
-                        
-                        <div class="driver-profile active" data-slide="0">
-                            <img src="img/Drivers/images (1).jpeg" alt="Driver" class="driver-photo">
-                            <div class="driver-card">
-                                <div class="driver-header">
-                                    <span class="driver-name">JOHN OKETCH</span>
-                                    <span class="verified-icon">✓</span>
-                                </div>
-                                <div class="rating">Rating: ⭐ 4.8</div>
-                                <div class="driver-details">
-                                    <div class="detail-item"><span class="label">Age:</span><span class="value">27</span></div>
-                                    <div class="detail-item"><span class="label">Experience:</span><span class="value">2Years</span></div>
-                                    <div class="detail-item"><span class="label">Driver Type:</span><span class="value">Online</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="driver-profile" data-slide="1">
-                            <img src="img/Drivers/images (2).jpeg" alt="Driver" class="driver-photo">
-                            <div class="driver-card">
-                                <div class="driver-header">
-                                    <span class="driver-name">MARY WANJIKU</span>
-                                    <span class="verified-icon">✓</span>
-                                </div>
-                                <div class="rating">Rating: ⭐ 4.6</div>
-                                <div class="driver-details">
-                                    <div class="detail-item"><span class="label">Age:</span><span class="value">32</span></div>
-                                    <div class="detail-item"><span class="label">Experience:</span><span class="value">5Years</span></div>
-                                    <div class="detail-item"><span class="label">Driver Type:</span><span class="value">Corporate</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="driver-profile" data-slide="2">
-                            <img src="img/Drivers/images (3).jpeg" alt="Driver" class="driver-photo">
-                            <div class="driver-card">
-                                <div class="driver-header">
-                                    <span class="driver-name">PETER MWANGI</span>
-                                    <span class="verified-icon">✓</span>
-                                </div>
-                                <div class="rating">Rating: ⭐ 4.9</div>
-                                <div class="driver-details">
-                                    <div class="detail-item"><span class="label">Age:</span><span class="value">29</span></div>
-                                    <div class="detail-item"><span class="label">Experience:</span><span class="value">3Years</span></div>
-                                    <div class="detail-item"><span class="label">Driver Type:</span><span class="value">Personal</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="driver-profile" data-slide="3">
-                            <img src="img/Drivers/images (4).jpeg" alt="Driver" class="driver-photo">
-                            <div class="driver-card">
-                                <div class="driver-header">
-                                    <span class="driver-name">GRACE AKINYI</span>
-                                    <span class="verified-icon">✓</span>
-                                </div>
-                                <div class="rating">Rating: ⭐ 4.7</div>
-                                <div class="driver-details">
-                                    <div class="detail-item"><span class="label">Age:</span><span class="value">25</span></div>
-                                    <div class="detail-item"><span class="label">Experience:</span><span class="value">1Year</span></div>
-                                    <div class="detail-item"><span class="label">Driver Type:</span><span class="value">Online</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="driver-profile" data-slide="4">
-                            <img src="img/Drivers/images (5).jpeg" alt="Driver" class="driver-photo">
-                            <div class="driver-card">
-                                <div class="driver-header">
-                                    <span class="driver-name">DAVID KIPROTICH</span>
-                                    <span class="verified-icon">✓</span>
-                                </div>
-                                <div class="rating">Rating: ⭐ 4.5</div>
-                                <div class="driver-details">
-                                    <div class="detail-item"><span class="label">Age:</span><span class="value">35</span></div>
-                                    <div class="detail-item"><span class="label">Experience:</span><span class="value">7Years</span></div>
-                                    <div class="detail-item"><span class="label">Driver Type:</span><span class="value">Corporate</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <button class="nav-arrow next" onclick="changeSlide(1)">›</button>
-                    </div>
+                <div class="hero-mini-stats">
+                    <div><strong>90+</strong><span>Verified drivers</span></div>
+                    <div><strong>11 min</strong><span>Average response speed</span></div>
+                    <div><strong>4.8/5</strong><span>Average driver rating</span></div>
                 </div>
             </div>
-        </div>
 
-        <div class="search-section">
-            <div class="search-form">
-                <div class="dropdown">
-                    <select>
-                        <option>Driver Type</option>
-                        <option>Online</option>
-                        <option>Corporate</option>
-                        <option>Personal</option>
-                    </select>
+            <aside class="highlight-panel">
+                <img src="img/Drivers/images (5).jpeg" alt="Featured driver">
+                <h2>Built for professional matching</h2>
+                <p>
+                    Add these driver cards to a real database later and you already have the UX foundation for
+                    shortlist management, booking requests, admin review, and customer support history.
+                </p>
+            </aside>
+        </section>
+
+        <section class="drivers-stack">
+            <section class="drivers-surface" id="driversDirectory">
+                <div class="section-title">
+                    <span class="section-kicker">Driver directory</span>
+                    <h2>Compare drivers more confidently</h2>
+                    <p>Use filters, ratings, and response speed to find a good fit for personal, corporate, or online work.</p>
                 </div>
-                <div class="dropdown">
-                    <select>
-                        <option>Experience</option>
-                        <option>1+</option>
-                        <option>2+</option>
-                        <option>3+</option>
-                        <option>4+</option>
-                        <option>5+</option>
-                    </select>
+
+                <div class="toolbar-grid">
+                    <label class="toolbar-field">
+                        <span>Search</span>
+                        <input id="driverSearch" type="search" placeholder="Search name, city, or type">
+                    </label>
+                    <label class="toolbar-field">
+                        <span>Driver type</span>
+                        <select id="driverTypeFilter">
+                            <option value="all">All types</option>
+                            <option value="Online">Online</option>
+                            <option value="Corporate">Corporate</option>
+                            <option value="Personal">Personal</option>
+                        </select>
+                    </label>
+                    <label class="toolbar-field">
+                        <span>City</span>
+                        <select id="driverCityFilter">
+                            <option value="all">All cities</option>
+                            <option value="Nairobi">Nairobi</option>
+                            <option value="Kisumu">Kisumu</option>
+                            <option value="Mombasa">Mombasa</option>
+                        </select>
+                    </label>
+                    <label class="toolbar-field">
+                        <span>Sort by</span>
+                        <select id="driverSortFilter">
+                            <option value="rating">Top rated</option>
+                            <option value="experience">Most experienced</option>
+                            <option value="speed">Fastest response</option>
+                        </select>
+                    </label>
+                    <button class="search-btn" type="button" onclick="document.getElementById('driverSearch').focus()">Focus search</button>
                 </div>
-                <button class="search-btn">Search</button>
-            </div>
-        </div>
-        
-        <section class="drivers-list">
-            <h2>Drivers</h2>
-            <div class="drivers-grid">
-                <div class="driver-item">
-                    <img src="img/Drivers/images (1).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">JOHN OKETCH</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 27</p>
-                            <p>Experience: 2Years</p>
-                            <p>Driver Type: Online</p>
-                            <p>Contact: 0735 763</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.8 (230 reviews)</div>
-                    </div>
+
+                <div class="results-row" style="margin:18px 0;">
+                    <strong id="driverResults">Showing 4 drivers</strong>
+                    <span class="driver-note">Bookings and saved drivers are stored locally now and can later sync to user accounts.</span>
                 </div>
-                
-                <div class="driver-item">
-                    <img src="img/Drivers/images (2).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">MARY WANJIKU</span>
-                            <span class="verified-icon">✓</span>
+
+                <div id="driversGrid" class="drivers-grid">
+                    <article class="driver-card" data-name="John Oketch" data-type="Online" data-city="Nairobi" data-rating="4.8" data-experience="2" data-speed="9">
+                        <img src="img/Drivers/images (1).jpeg" alt="John Oketch">
+                        <div>
+                            <div class="driver-top">
+                                <div>
+                                    <h3>John Oketch</h3>
+                                    <p>Online and app-based driver in Nairobi</p>
+                                </div>
+                                <div class="driver-score">
+                                    <strong>4.8 ★</strong>
+                                    <span class="driver-note">230 reviews</span>
+                                </div>
+                            </div>
+                            <p class="driver-summary">Great fit for app driving, flexible schedules, and city route coverage with quick response times and strong customer ratings.</p>
+                            <div class="driver-meta">
+                                <div class="meta-box"><strong>Experience</strong><span>2 years</span></div>
+                                <div class="meta-box"><strong>Response</strong><span>9 mins avg</span></div>
+                                <div class="meta-box"><strong>Coverage</strong><span>Nairobi CBD, Westlands</span></div>
+                                <div class="meta-box"><strong>Availability</strong><span>Ready today</span></div>
+                            </div>
+                            <div class="driver-footer">
+                                <div class="chip-row">
+                                    <span class="chip">Online</span>
+                                    <span class="chip">City routes</span>
+                                    <span class="chip">Verified</span>
+                                </div>
+                                <div class="driver-actions">
+                                    <button class="mini-btn save-driver-btn" type="button">Save</button>
+                                    <button class="mini-btn" type="button" onclick="createDriverBooking('John Oketch', 'Online', 'Nairobi')">Book driver</button>
+                                    <button class="mini-btn primary" type="button" onclick="window.location.href='driver-profile.html?driver=john-oketch'">View profile</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="driver-details">
-                            <p>Age: 32</p>
-                            <p>Experience: 5Years</p>
-                            <p>Driver Type: Corporate</p>
-                            <p>Contact: 0721 456</p>
+                    </article>
+
+                    <article class="driver-card" data-name="Mary Wanjiku" data-type="Corporate" data-city="Nairobi" data-rating="4.9" data-experience="5" data-speed="14">
+                        <img src="img/Drivers/images (2).jpeg" alt="Mary Wanjiku">
+                        <div>
+                            <div class="driver-top">
+                                <div>
+                                    <h3>Mary Wanjiku</h3>
+                                    <p>Corporate and executive driver in Nairobi</p>
+                                </div>
+                                <div class="driver-score">
+                                    <strong>4.9 ★</strong>
+                                    <span class="driver-note">189 reviews</span>
+                                </div>
+                            </div>
+                            <p class="driver-summary">Strong for office runs, client pickups, and repeat schedules where professionalism and punctuality matter most.</p>
+                            <div class="driver-meta">
+                                <div class="meta-box"><strong>Experience</strong><span>5 years</span></div>
+                                <div class="meta-box"><strong>Response</strong><span>14 mins avg</span></div>
+                                <div class="meta-box"><strong>Coverage</strong><span>Nairobi, Kiambu</span></div>
+                                <div class="meta-box"><strong>Availability</strong><span>Booked tomorrow</span></div>
+                            </div>
+                            <div class="driver-footer">
+                                <div class="chip-row">
+                                    <span class="chip">Corporate</span>
+                                    <span class="chip">Executive trips</span>
+                                    <span class="chip">Recurring bookings</span>
+                                </div>
+                                <div class="driver-actions">
+                                    <button class="mini-btn save-driver-btn" type="button">Save</button>
+                                    <button class="mini-btn" type="button" onclick="createDriverBooking('Mary Wanjiku', 'Corporate', 'Nairobi')">Book driver</button>
+                                    <button class="mini-btn primary" type="button" onclick="window.location.href='driver-profile.html?driver=mary-wanjiku'">View profile</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.6 (189 reviews)</div>
-                    </div>
+                    </article>
+
+                    <article class="driver-card" data-name="Peter Mwangi" data-type="Personal" data-city="Kisumu" data-rating="4.7" data-experience="3" data-speed="11">
+                        <img src="img/Drivers/images (3).jpeg" alt="Peter Mwangi">
+                        <div>
+                            <div class="driver-top">
+                                <div>
+                                    <h3>Peter Mwangi</h3>
+                                    <p>Personal-use driver in Kisumu</p>
+                                </div>
+                                <div class="driver-score">
+                                    <strong>4.7 ★</strong>
+                                    <span class="driver-note">312 reviews</span>
+                                </div>
+                            </div>
+                            <p class="driver-summary">Reliable for family movement, errands, and short-term needs with calm customer handling and practical route planning.</p>
+                            <div class="driver-meta">
+                                <div class="meta-box"><strong>Experience</strong><span>3 years</span></div>
+                                <div class="meta-box"><strong>Response</strong><span>11 mins avg</span></div>
+                                <div class="meta-box"><strong>Coverage</strong><span>Kisumu CBD, Airport</span></div>
+                                <div class="meta-box"><strong>Availability</strong><span>Ready in 1 hr</span></div>
+                            </div>
+                            <div class="driver-footer">
+                                <div class="chip-row">
+                                    <span class="chip">Personal</span>
+                                    <span class="chip">Family trips</span>
+                                    <span class="chip">Weekend ready</span>
+                                </div>
+                                <div class="driver-actions">
+                                    <button class="mini-btn save-driver-btn" type="button">Save</button>
+                                    <button class="mini-btn" type="button" onclick="createDriverBooking('Peter Mwangi', 'Personal', 'Kisumu')">Book driver</button>
+                                    <button class="mini-btn primary" type="button" onclick="window.location.href='driver-profile.html?driver=peter-mwangi'">View profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="driver-card" data-name="Grace Akinyi" data-type="Online" data-city="Mombasa" data-rating="4.6" data-experience="4" data-speed="8">
+                        <img src="img/Drivers/images (4).jpeg" alt="Grace Akinyi">
+                        <div>
+                            <div class="driver-top">
+                                <div>
+                                    <h3>Grace Akinyi</h3>
+                                    <p>Fast-response online driver in Mombasa</p>
+                                </div>
+                                <div class="driver-score">
+                                    <strong>4.6 ★</strong>
+                                    <span class="driver-note">156 reviews</span>
+                                </div>
+                            </div>
+                            <p class="driver-summary">Suitable for app-based operations, flexible shifts, and transport work where quick response and route familiarity matter.</p>
+                            <div class="driver-meta">
+                                <div class="meta-box"><strong>Experience</strong><span>4 years</span></div>
+                                <div class="meta-box"><strong>Response</strong><span>8 mins avg</span></div>
+                                <div class="meta-box"><strong>Coverage</strong><span>Mombasa Island, Nyali</span></div>
+                                <div class="meta-box"><strong>Availability</strong><span>Ready now</span></div>
+                            </div>
+                            <div class="driver-footer">
+                                <div class="chip-row">
+                                    <span class="chip">Online</span>
+                                    <span class="chip">Night shift</span>
+                                    <span class="chip">High responsiveness</span>
+                                </div>
+                                <div class="driver-actions">
+                                    <button class="mini-btn save-driver-btn" type="button">Save</button>
+                                    <button class="mini-btn" type="button" onclick="createDriverBooking('Grace Akinyi', 'Online', 'Mombasa')">Book driver</button>
+                                    <button class="mini-btn primary" type="button" onclick="window.location.href='driver-profile.html?driver=grace-akinyi'">View profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                
-                <div class="driver-item">
-                    <img src="img/Drivers/images (3).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">PETER MWANGI</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 29</p>
-                            <p>Experience: 3Years</p>
-                            <p>Driver Type: Personal</p>
-                            <p>Contact: 0712 890</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.9 (312 reviews)</div>
-                    </div>
+            </section>
+
+            <section class="drivers-surface" id="driverSupport">
+                <div class="section-title">
+                    <span class="section-kicker">What to build next</span>
+                    <h2>Backend-ready modules for the driver side</h2>
+                    <p>These are the features that make this listing experience become a real operations product.</p>
                 </div>
-                
-                <div class="driver-item">
-                    <img src="img/Drivers/images (4).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">GRACE AKINYI</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 25</p>
-                            <p>Experience: 1Year</p>
-                            <p>Driver Type: Online</p>
-                            <p>Contact: 0798 234</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.7 (156 reviews)</div>
-                    </div>
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <strong>Verified document vault</strong>
+                        <p>Store licenses, ID files, and review status per driver instead of showing generic trust text.</p>
+                    </article>
+                    <article class="feature-card">
+                        <strong>Booking workflow</strong>
+                        <p>Track pending, confirmed, and completed bookings with customer notes and internal status updates.</p>
+                    </article>
+                    <article class="feature-card">
+                        <strong>Support and messaging</strong>
+                        <p>Let customers and drivers communicate while you keep a searchable history in the admin panel.</p>
+                    </article>
                 </div>
-                
-                <div class="driver-item">
-                    <img src="img/Drivers/images (5).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">DAVID KIPROTICH</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 35</p>
-                            <p>Experience: 7Years</p>
-                            <p>Driver Type: Corporate</p>
-                            <p>Contact: 0745 678</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.5 (278 reviews)</div>
-                    </div>
-                </div>
-                
-                <div class="driver-item">
-                    <img src="img/Drivers/images (6).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">SARAH MUTUA</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 28</p>
-                            <p>Experience: 4Years</p>
-                            <p>Driver Type: Personal</p>
-                            <p>Contact: 0756 123</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.8 (201 reviews)</div>
-                    </div>
-                </div>
-                
-                <div class="driver-item">
-                    <img src="img/Drivers/images (7).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">JAMES OTIENO</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 31</p>
-                            <p>Experience: 6Years</p>
-                            <p>Driver Type: Online</p>
-                            <p>Contact: 0734 567</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.6 (145 reviews)</div>
-                    </div>
-                </div>
-                
-                <div class="driver-item">
-                    <img src="img/Drivers/images (8).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">LUCY NJERI</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 26</p>
-                            <p>Experience: 2Years</p>
-                            <p>Driver Type: Corporate</p>
-                            <p>Contact: 0789 345</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.7 (167 reviews)</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="drivers-grid page-2" style="display: none;">
-                <div class="driver-item">
-                    <img src="img/Drivers/images (9).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">MICHAEL KAMAU</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 33</p>
-                            <p>Experience: 8Years</p>
-                            <p>Driver Type: Corporate</p>
-                            <p>Contact: 0722 891</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.9 (345 reviews)</div>
-                    </div>
-                </div>
-                
-                <div class="driver-item">
-                    <img src="img/Drivers/images (10).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">ESTHER WAMBUI</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 24</p>
-                            <p>Experience: 1Year</p>
-                            <p>Driver Type: Online</p>
-                            <p>Contact: 0765 432</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.5 (98 reviews)</div>
-                    </div>
-                </div>
-                
-                <div class="driver-item">
-                    <img src="img/Drivers/images (11).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">ROBERT KIPCHOGE</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 30</p>
-                            <p>Experience: 5Years</p>
-                            <p>Driver Type: Personal</p>
-                            <p>Contact: 0743 567</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.7 (223 reviews)</div>
-                    </div>
-                </div>
-                
-                <div class="driver-item">
-                    <img src="img/Drivers/images (12).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">FAITH NYONG'O</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 27</p>
-                            <p>Experience: 3Years</p>
-                            <p>Driver Type: Online</p>
-                            <p>Contact: 0758 234</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.8 (187 reviews)</div>
-                    </div>
-                </div>
-                
-                <div class="driver-item">
-                    <img src="img/Drivers/images (13).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">ANTHONY MAINA</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 36</p>
-                            <p>Experience: 9Years</p>
-                            <p>Driver Type: Corporate</p>
-                            <p>Contact: 0731 678</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.6 (412 reviews)</div>
-                    </div>
-                </div>
-                
-                <div class="driver-item">
-                    <img src="img/Drivers/images (14).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">CAROLINE CHEBET</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 29</p>
-                            <p>Experience: 4Years</p>
-                            <p>Driver Type: Personal</p>
-                            <p>Contact: 0776 890</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.7 (156 reviews)</div>
-                    </div>
-                </div>
-                
-                <div class="driver-item">
-                    <img src="img/Drivers/images (15).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">DANIEL OCHIENG</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 32</p>
-                            <p>Experience: 6Years</p>
-                            <p>Driver Type: Online</p>
-                            <p>Contact: 0712 345</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.8 (289 reviews)</div>
-                    </div>
-                </div>
-                
-                <div class="driver-item">
-                    <img src="img/Drivers/images (16).jpeg" alt="Driver" class="driver-avatar">
-                    <div class="driver-info">
-                        <div class="driver-header">
-                            <span class="driver-name">REBECCA WANJALA</span>
-                            <span class="verified-icon">✓</span>
-                        </div>
-                        <div class="driver-details">
-                            <p>Age: 28</p>
-                            <p>Experience: 2Years</p>
-                            <p>Driver Type: Corporate</p>
-                            <p>Contact: 0794 123</p>
-                        </div>
-                        <div class="other-thing-box">Any other thing</div>
-                        <div class="driver-rating">Rating: ⭐ 4.5 (134 reviews)</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="pagination">
-                <button class="next-page" onclick="showPage(2)">NEXT PAGE</button>
-            </div>
+            </section>
         </section>
     </main>
+
+    <footer class="app-footer">
+        <div class="footer-links">
+            <strong>DriveSasa App Structure</strong>
+            <div class="chip-row">
+                <a class="chip" href="index.html">Home</a>
+                <a class="chip" href="carpartners2.html">Car Partners</a>
+                <a class="chip" href="requests.html">Requests</a>
+                <a class="chip" href="dashboard.html">Dashboard</a>
+            </div>
+        </div>
+        <p>This driver page now connects into profile pages, saved state, and booking storage so it behaves more like an app than a static catalog.</p>
+    </footer>
+
+    <script src="js/app-store.js"></script>
     <script>
-        let currentSlide = 0;
-        const totalSlides = 5;
-        let currentPage = 1;
-        
-        function changeSlide(direction) {
-            const slides = document.querySelectorAll('.driver-profile');
-            slides[currentSlide].classList.remove('active');
-            
-            currentSlide += direction;
-            if (currentSlide >= totalSlides) currentSlide = 0;
-            if (currentSlide < 0) currentSlide = totalSlides - 1;
-            
-            slides[currentSlide].classList.add('active');
+        var driverSearch = document.getElementById("driverSearch");
+        var driverTypeFilter = document.getElementById("driverTypeFilter");
+        var driverCityFilter = document.getElementById("driverCityFilter");
+        var driverSortFilter = document.getElementById("driverSortFilter");
+        var driversGrid = document.getElementById("driversGrid");
+        var driverResults = document.getElementById("driverResults");
+
+        function getDriverCards() {
+            return Array.from(driversGrid.querySelectorAll(".driver-card"));
         }
-        
-        function showPage(page) {
-            const page1 = document.querySelector('.drivers-grid:not(.page-2)');
-            const page2 = document.querySelector('.drivers-grid.page-2');
-            const nextBtn = document.querySelector('.next-page');
-            
-            if (page === 1) {
-                page1.style.display = 'grid';
-                page2.style.display = 'none';
-                nextBtn.textContent = 'NEXT PAGE';
-                nextBtn.onclick = () => showPage(2);
-                currentPage = 1;
-            } else {
-                page1.style.display = 'none';
-                page2.style.display = 'grid';
-                nextBtn.textContent = 'PREVIOUS PAGE';
-                nextBtn.onclick = () => showPage(1);
-                currentPage = 2;
-            }
+
+        function updateDriverResults(count) {
+            driverResults.textContent = "Showing " + count + " driver" + (count === 1 ? "" : "s");
         }
+
+        function sortDrivers() {
+            var visibleCards = getDriverCards().filter(function(card) {
+                return card.style.display !== "none";
+            });
+
+            var sortMode = driverSortFilter.value;
+
+            visibleCards.sort(function(a, b) {
+                if (sortMode === "experience") {
+                    return Number(b.dataset.experience) - Number(a.dataset.experience);
+                }
+                if (sortMode === "speed") {
+                    return Number(a.dataset.speed) - Number(b.dataset.speed);
+                }
+                return Number(b.dataset.rating) - Number(a.dataset.rating);
+            });
+
+            visibleCards.forEach(function(card) {
+                driversGrid.appendChild(card);
+            });
+
+            updateDriverResults(visibleCards.length);
+        }
+
+        function filterDrivers() {
+            var searchValue = driverSearch.value.trim().toLowerCase();
+            var typeValue = driverTypeFilter.value;
+            var cityValue = driverCityFilter.value;
+
+            getDriverCards().forEach(function(card) {
+                var haystack = (card.dataset.name + " " + card.dataset.type + " " + card.dataset.city).toLowerCase();
+                var matchesSearch = haystack.includes(searchValue);
+                var matchesType = typeValue === "all" || card.dataset.type === typeValue;
+                var matchesCity = cityValue === "all" || card.dataset.city === cityValue;
+
+                card.style.display = matchesSearch && matchesType && matchesCity ? "grid" : "none";
+            });
+
+            sortDrivers();
+        }
+
+        function createDriverBooking(name, type, city) {
+            var bookingId = "booking-" + Date.now();
+            window.DriveSasaStore.addBooking({
+                id: bookingId,
+                category: "driver",
+                name: name,
+                serviceType: type,
+                city: city,
+                status: "pending",
+                createdAt: new Date().toISOString()
+            });
+
+            window.location.href = "requests.html";
+        }
+
+        function wireSaveDriverButtons() {
+            var savedDrivers = window.DriveSasaStore.getSaved("driver").map(function(item) {
+                return item.name;
+            });
+
+            document.querySelectorAll(".save-driver-btn").forEach(function(button) {
+                var card = button.closest(".driver-card");
+                var driverName = card.dataset.name;
+
+                if (savedDrivers.includes(driverName)) {
+                    button.textContent = "Saved";
+                    button.classList.add("saved");
+                }
+
+                button.addEventListener("click", function() {
+                    var isSaved = window.DriveSasaStore.toggleSaved("ds_saved_drivers", {
+                        name: driverName,
+                        type: card.dataset.type,
+                        city: card.dataset.city,
+                        rating: card.dataset.rating
+                    }, "name");
+
+                    button.textContent = isSaved ? "Saved" : "Save";
+                    button.classList.toggle("saved", isSaved);
+                });
+            });
+        }
+
+        [driverSearch, driverTypeFilter, driverCityFilter].forEach(function(element) {
+            element.addEventListener("input", filterDrivers);
+            element.addEventListener("change", filterDrivers);
+        });
+
+        driverSortFilter.addEventListener("change", sortDrivers);
+
+        wireSaveDriverButtons();
+        filterDrivers();
     </script>
 </body>
 </html>

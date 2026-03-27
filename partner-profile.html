@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveSasa - Car Partner Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .profile-shell {
+            width: min(1080px, calc(100% - 32px));
+            margin: 26px auto 48px;
+        }
+
+        .profile-card {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 24px;
+            padding: 28px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(13, 24, 43, 0.06);
+            box-shadow: 0 20px 50px rgba(12, 22, 40, 0.08);
+        }
+
+        .profile-card img {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            object-fit: cover;
+            border-radius: 24px;
+        }
+
+        .profile-card h1 {
+            margin: 0 0 8px;
+        }
+
+        .profile-card p {
+            margin: 0 0 16px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .profile-grid div {
+            padding: 14px;
+            border-radius: 18px;
+            background: #f7faf8;
+        }
+
+        .profile-grid strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .profile-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .profile-note {
+            margin-top: 22px;
+            padding: 16px;
+            border-radius: 18px;
+            background: #fff2ea;
+            color: var(--brand-dark);
+            font-weight: 600;
+        }
+
+        @media (max-width: 820px) {
+            .profile-shell {
+                width: min(100% - 20px, 1080px);
+            }
+
+            .profile-card,
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/Dlogo2.png" alt="DriveSasa Logo">
+                <span class="logo-text">DRIVE<span class="sasa">SASA</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="carpartners2.html" class="active">Car Partners</a></li>
+                <li><a href="requests.html">Requests</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="sign-in" onclick="window.location.href='dashboard.html'">Dashboard</button>
+                <button class="sign-up" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="profile-shell">
+        <article class="profile-card">
+            <img id="profileImage" src="" alt="Car partner vehicle photo">
+            <div>
+                <span class="section-kicker">Car partner profile</span>
+                <h1 id="profileName"></h1>
+                <p id="profileSummary"></p>
+                <div id="profileGrid" class="profile-grid"></div>
+                <div class="profile-actions">
+                    <button class="primary-cta" type="button" id="bookPartnerBtn">Create booking</button>
+                    <button class="sign-in" type="button" id="savePartnerBtn">Save partner</button>
+                    <button class="sign-in" type="button" onclick="window.location.href='requests.html'">View requests center</button>
+                </div>
+                <div class="profile-note">This page is ready to grow into a complete partner detail screen with fleet documents, pricing tables, ratings, and contract terms.</div>
+            </div>
+        </article>
+    </main>
+
+    <script src="js/app-store.js"></script>
+    <script>
+        var partnerData = {
+            "mary-njeri": {
+                name: "Mary Njeri",
+                type: "Corporate",
+                city: "Nairobi",
+                image: "img/cars/pexels-ajdin-coric-504250286-31574920.jpg",
+                summary: "Corporate mobility partner with a clean sedan fleet, steady response times, and support for executive transfers and recurring bookings.",
+                fleet: "Toyota Axio, Premio",
+                rating: "4.9",
+                response: "12 mins avg",
+                coverage: "Nairobi, Kiambu",
+                availability: "Available today",
+                pricing: "From KES 4,800/day"
+            },
+            "david-otieno": {
+                name: "David Otieno",
+                type: "Personal",
+                city: "Kisumu",
+                image: "img/cars/pexels-irfan-rahat-164426592-11114271.jpg",
+                summary: "Personal-use partner for family movement, airport transfers, and flexible short-term availability.",
+                fleet: "Honda Fit",
+                rating: "4.7",
+                response: "18 mins avg",
+                coverage: "Kisumu CBD, Airport",
+                availability: "Available in 2 hrs",
+                pricing: "From KES 3,500/day"
+            },
+            "fatma-abdalla": {
+                name: "Fatma Abdalla",
+                type: "Online",
+                city: "Mombasa",
+                image: "img/cars/pexels-kipras-zabeliauskas-1607943-5704347.jpg",
+                summary: "Online-operations partner suitable for ride-hailing, flexible shifts, and reporting-friendly transport work.",
+                fleet: "Mazda Demio",
+                rating: "4.8",
+                response: "10 mins avg",
+                coverage: "Mombasa Island, Nyali",
+                availability: "Ready now",
+                pricing: "From KES 4,200/day"
+            },
+            "kevin-mwangi": {
+                name: "Kevin Mwangi",
+                type: "Airport",
+                city: "Nairobi",
+                image: "img/cars/pexels-ajdin-coric-504250286-31574918.jpg",
+                summary: "Airport-focused car partner with organized scheduling, ETA communication, and repeatable pickup processes.",
+                fleet: "Nissan Note",
+                rating: "4.6",
+                response: "8 mins avg",
+                coverage: "JKIA, Westlands",
+                availability: "Available tomorrow",
+                pricing: "From KES 3,900/day"
+            }
+        };
+
+        var params = new URLSearchParams(window.location.search);
+        var partnerKey = params.get("partner") || "mary-njeri";
+        var partner = partnerData[partnerKey] || partnerData["mary-njeri"];
+
+        document.getElementById("profileImage").src = partner.image;
+        document.getElementById("profileName").textContent = partner.name;
+        document.getElementById("profileSummary").textContent = partner.summary;
+        document.getElementById("profileGrid").innerHTML = [
+            ["Service type", partner.type],
+            ["City", partner.city],
+            ["Fleet", partner.fleet],
+            ["Rating", partner.rating + " ★"],
+            ["Response speed", partner.response],
+            ["Coverage", partner.coverage],
+            ["Availability", partner.availability],
+            ["Pricing", partner.pricing]
+        ].map(function(entry) {
+            return '<div><strong>' + entry[0] + '</strong><span>' + entry[1] + '</span></div>';
+        }).join("");
+
+        document.getElementById("bookPartnerBtn").addEventListener("click", function() {
+            window.DriveSasaStore.addBooking({
+                id: "booking-" + Date.now(),
+                category: "partner",
+                name: partner.name,
+                serviceType: partner.type,
+                city: partner.city,
+                status: "pending",
+                createdAt: new Date().toISOString()
+            });
+            window.location.href = "requests.html";
+        });
+
+        document.getElementById("savePartnerBtn").addEventListener("click", function() {
+            var saved = window.DriveSasaStore.toggleSaved("ds_saved_partners", {
+                name: partner.name,
+                type: partner.type,
+                city: partner.city,
+                rating: partner.rating
+            }, "name");
+            this.textContent = saved ? "Saved" : "Save partner";
+        });
+    </script>
+</body>
+</html>

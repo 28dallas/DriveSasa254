@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveSasa - Driver Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .profile-shell {
+            width: min(1080px, calc(100% - 32px));
+            margin: 26px auto 48px;
+        }
+
+        .profile-card {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 24px;
+            padding: 28px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(13, 24, 43, 0.06);
+            box-shadow: 0 20px 50px rgba(12, 22, 40, 0.08);
+        }
+
+        .profile-card img {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            object-fit: cover;
+            border-radius: 24px;
+        }
+
+        .profile-card h1 {
+            margin: 0 0 8px;
+        }
+
+        .profile-card p {
+            margin: 0 0 16px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .profile-grid div {
+            padding: 14px;
+            border-radius: 18px;
+            background: #f7faf8;
+        }
+
+        .profile-grid strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .profile-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .profile-note {
+            margin-top: 22px;
+            padding: 16px;
+            border-radius: 18px;
+            background: #fff2ea;
+            color: var(--brand-dark);
+            font-weight: 600;
+        }
+
+        @media (max-width: 820px) {
+            .profile-shell {
+                width: min(100% - 20px, 1080px);
+            }
+
+            .profile-card,
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/Dlogo2.png" alt="DriveSasa Logo">
+                <span class="logo-text">DRIVE<span class="sasa">SASA</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="drivers.html" class="active">Drivers</a></li>
+                <li><a href="requests.html">Requests</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="sign-in" onclick="window.location.href='dashboard.html'">Dashboard</button>
+                <button class="sign-up" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="profile-shell">
+        <article class="profile-card">
+            <img id="profileImage" src="" alt="Driver profile photo">
+            <div>
+                <span class="section-kicker">Driver profile</span>
+                <h1 id="profileName"></h1>
+                <p id="profileSummary"></p>
+                <div id="profileGrid" class="profile-grid"></div>
+                <div class="profile-actions">
+                    <button class="primary-cta" type="button" id="bookDriverBtn">Book driver</button>
+                    <button class="sign-in" type="button" id="saveDriverBtn">Save driver</button>
+                    <button class="sign-in" type="button" onclick="window.location.href='requests.html'">View requests center</button>
+                </div>
+                <div class="profile-note">Later you can connect this page to a real database, review history, chat, verification files, and availability calendar.</div>
+            </div>
+        </article>
+    </main>
+
+    <script src="js/app-store.js"></script>
+    <script>
+        var driverData = {
+            "john-oketch": {
+                name: "John Oketch",
+                type: "Online",
+                city: "Nairobi",
+                image: "img/Drivers/images (1).jpeg",
+                summary: "Online and app-based driver with strong city navigation, high responsiveness, and customer-friendly service.",
+                experience: "2 years",
+                rating: "4.8",
+                response: "9 mins avg",
+                coverage: "Nairobi CBD, Westlands",
+                availability: "Ready today",
+                languages: "English, Kiswahili"
+            },
+            "mary-wanjiku": {
+                name: "Mary Wanjiku",
+                type: "Corporate",
+                city: "Nairobi",
+                image: "img/Drivers/images (2).jpeg",
+                summary: "Corporate-focused driver suited for office transfers, executive movement, and repeat schedules.",
+                experience: "5 years",
+                rating: "4.9",
+                response: "14 mins avg",
+                coverage: "Nairobi, Kiambu",
+                availability: "Booked tomorrow",
+                languages: "English, Kiswahili"
+            },
+            "peter-mwangi": {
+                name: "Peter Mwangi",
+                type: "Personal",
+                city: "Kisumu",
+                image: "img/Drivers/images (3).jpeg",
+                summary: "Dependable personal-use driver for families, airport runs, and daily errands.",
+                experience: "3 years",
+                rating: "4.7",
+                response: "11 mins avg",
+                coverage: "Kisumu CBD, Airport",
+                availability: "Ready in 1 hr",
+                languages: "English, Kiswahili, Luo"
+            },
+            "grace-akinyi": {
+                name: "Grace Akinyi",
+                type: "Online",
+                city: "Mombasa",
+                image: "img/Drivers/images (4).jpeg",
+                summary: "Fast-response driver for app-based work, flexible shifts, and high-demand routes.",
+                experience: "4 years",
+                rating: "4.6",
+                response: "8 mins avg",
+                coverage: "Mombasa Island, Nyali",
+                availability: "Ready now",
+                languages: "English, Kiswahili"
+            }
+        };
+
+        var params = new URLSearchParams(window.location.search);
+        var driverKey = params.get("driver") || "john-oketch";
+        var driver = driverData[driverKey] || driverData["john-oketch"];
+
+        document.getElementById("profileImage").src = driver.image;
+        document.getElementById("profileName").textContent = driver.name;
+        document.getElementById("profileSummary").textContent = driver.summary;
+        document.getElementById("profileGrid").innerHTML = [
+            ["Driver type", driver.type],
+            ["City", driver.city],
+            ["Experience", driver.experience],
+            ["Rating", driver.rating + " ★"],
+            ["Response speed", driver.response],
+            ["Coverage", driver.coverage],
+            ["Availability", driver.availability],
+            ["Languages", driver.languages]
+        ].map(function(entry) {
+            return '<div><strong>' + entry[0] + '</strong><span>' + entry[1] + '</span></div>';
+        }).join("");
+
+        document.getElementById("bookDriverBtn").addEventListener("click", function() {
+            window.DriveSasaStore.addBooking({
+                id: "booking-" + Date.now(),
+                category: "driver",
+                name: driver.name,
+                serviceType: driver.type,
+                city: driver.city,
+                status: "pending",
+                createdAt: new Date().toISOString()
+            });
+            window.location.href = "requests.html";
+        });
+
+        document.getElementById("saveDriverBtn").addEventListener("click", function() {
+            var saved = window.DriveSasaStore.toggleSaved("ds_saved_drivers", {
+                name: driver.name,
+                type: driver.type,
+                city: driver.city,
+                rating: driver.rating
+            }, "name");
+            this.textContent = saved ? "Saved" : "Save driver";
+        });
+    </script>
+</body>
+</html>
